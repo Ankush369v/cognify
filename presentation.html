@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognify | PBL Presentation</title>
+
+    <!-- Scripts & Styles -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['"Outfit"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            500: '#14b8a6', // Teal
+                        },
+                        accent: {
+                            500: '#6366f1', // Indigo
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'pulse-glow': {
+                            '0%, 100%': { opacity: 1, boxShadow: '0 0 20px rgba(99, 102, 241, 0.5)' },
+                            '50%': { opacity: .7, boxShadow: '0 0 10px rgba(99, 102, 241, 0.2)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #020617;
+            /* Slate 950 */
+            color: #f8fafc;
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 40%);
+        }
+
+        .glass {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .glass-card {
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.6) 100%);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(99, 102, 241, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px -10px rgba(99, 102, 241, 0.3);
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #818cf8, #c084fc, #f472b6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .grid-bg {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            mask-image: linear-gradient(to bottom, black 0%, transparent 90%);
+        }
+
+        /* Flow Connector Lines */
+        .flow-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, #6366f1, transparent);
+            height: 2px;
+            width: 100%;
+            top: 50%;
+            z-index: 0;
+            opacity: 0.3;
+        }
+    </style>
+</head>
+
+<body onload="init()">
+
+    <!-- Presentation Timer -->
+    <div id="timerContainer"
+        class="fixed bottom-6 right-6 z-50 glass px-5 py-2 rounded-xl flex items-center gap-3 border border-slate-700/50 shadow-2xl transition-all duration-300">
+        <div class="flex flex-col items-end">
+            <span class="text-[9px] uppercase tracking-widest text-slate-400 font-bold">Session Time</span>
+            <span id="displayTime" class="text-2xl font-mono font-bold text-white tracking-widest">00:00</span>
+        </div>
+        <div id="timerStatus" class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_10px_#10b981]">
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-40 glass border-b border-white/5 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div
+                    class="p-2.5 bg-gradient-to-tr from-indigo-500 to-purple-600 rounded-2xl border border-white/20 shadow-lg shadow-indigo-500/30">
+                    <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z">
+                        </path>
+                        <path d="M9 13a4.5 4.5 0 0 0 3-4"></path>
+                        <path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"></path>
+                        <path d="M3.477 10.896a4 4 0 0 1 .585-.396"></path>
+                        <path d="M6 18a4 4 0 0 1-1.967-.516"></path>
+                        <path d="M12 13h4"></path>
+                        <path d="M12 18h6a2 2 0 0 1 2 2v1"></path>
+                        <path d="M12 8h8"></path>
+                        <path d="M16 8V5a2 2 0 0 1 2-2"></path>
+                        <circle cx="16" cy="13" r=".5"></circle>
+                        <circle cx="18" cy="3" r=".5"></circle>
+                        <circle cx="20" cy="21" r=".5"></circle>
+                        <circle cx="20" cy="8" r=".5"></circle>
+                    </svg>
+                </div>
+                <div>
+                    <h1
+                        class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-indigo-200 to-white tracking-tight font-display">
+                        Cognify</h1>
+                    <p class="text-[9px] text-slate-400 font-bold tracking-[0.2em] uppercase">CS Project 2026</p>
+                </div>
+            </div>
+
+            <div class="hidden md:flex gap-8 text-[11px] font-bold uppercase tracking-widest text-slate-400">
+                <a href="#overview" class="hover:text-white transition-colors">Overview</a>
+                <a href="#problem" class="hover:text-white transition-colors">Problem</a>
+                <a href="#methodology" class="hover:text-white transition-colors">Methodology</a>
+                <a href="#modules" class="hover:text-white transition-colors">Features</a>
+                <a href="#architecture" class="hover:text-white transition-colors">Architecture</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Background Grid -->
+    <div class="fixed inset-0 grid-bg z-0 pointer-events-none"></div>
+
+    <main class="relative z-10">
+
+        <!-- Hero Section -->
+        <section id="overview"
+            class="min-h-screen flex items-center justify-center pt-16 px-4 relative overflow-hidden">
+            <!-- Decorative Elements -->
+            <div class="absolute top-1/3 left-1/4 w-64 h-64 bg-indigo-600/20 rounded-full blur-[80px] animate-pulse">
+            </div>
+            <div
+                class="absolute bottom-1/3 right-1/4 w-80 h-80 bg-fuchsia-600/10 rounded-full blur-[100px] animate-float">
+            </div>
+
+            <div class="max-w-5xl mx-auto text-center space-y-6" data-aos="zoom-in" data-aos-duration="1000">
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 text-[10px] font-bold tracking-[0.2em] uppercase mb-2 backdrop-blur-md">
+                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"></span>
+                    Project ID: 23FE10CSE00100
+                </div>
+
+                <h1 class="font-display text-5xl md:text-7xl font-black tracking-tight leading-[0.95]">
+                    <span class="text-gradient drop-shadow-lg">COGNIFY</span><br>
+                    <span class="text-white text-3xl md:text-4xl font-light">Intelligent Amplified</span>
+                </h1>
+
+                <p
+                    class="text-base md:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed border-l-2 border-indigo-500/30 pl-6 text-left italic">
+                    <strong class="text-indigo-400">Project Statement:</strong> Cognify is a comprehensive full-stack
+                    web application that unifies AI-powered content generation, automated data analytics, and
+                    interactive study tools into a single cloud-synchronized platform, eliminating the need to switch
+                    between multiple applications for learning and productivity.
+                </p>
+
+                <div class="flex flex-wrap justify-center gap-4 pt-6">
+                    <a href="https://cognifylearning.vercel.app" target="_blank"
+                        class="group relative px-8 py-3 bg-white text-slate-950 rounded-full font-bold text-sm tracking-wide transition-all hover:scale-105 shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+                        <span class="relative z-10 flex items-center gap-2">
+                            LIVE DEMO <i class="fas fa-external-link-alt text-xs"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="absolute bottom-8 left-0 right-0 text-center animate-bounce text-slate-600">
+                <i class="fas fa-chevron-down text-xl"></i>
+            </div>
+        </section>
+
+        <!-- Problem & Solution Section -->
+        <section id="problem" class="py-24 px-4 max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Problem -->
+                <div class="glass-card p-10 rounded-3xl border-l-4 border-red-400" data-aos="fade-right">
+                    <h2 class="text-3xl font-display font-bold mb-6 text-red-400">The Problem</h2>
+                    <div class="space-y-4">
+                        <p class="text-slate-300 leading-relaxed">
+                            Modern students face unprecedented <strong class="text-white">information overload</strong>
+                            and are forced to juggle 4-5 disparate tools for studying, content generation, code
+                            analysis, and data visualization.
+                        </p>
+                        <p class="text-sm text-slate-400 leading-relaxed">
+                            Creating flashcards manually, generating summaries from PDFs, analyzing datasets, and
+                            reviewing code requires switching between multiple platforms—resulting in <span
+                                class="text-red-400 font-bold">productivity loss, cognitive fatigue, and poor knowledge
+                                retention</span>.
+                        </p>
+
+                        <div class="mt-6 pt-6 border-t border-white/10">
+                            <h3 class="text-xs uppercase font-bold text-slate-500 mb-3 tracking-widest">Gap Analysis
+                            </h3>
+                            <div class="space-y-2 text-sm text-slate-400">
+                                <div class="flex items-start gap-2">
+                                    <i class="fas fa-times text-red-400 mt-1"></i>
+                                    <span><strong class="text-slate-300">Quizlet:</strong> Manual flashcard creation,
+                                        no AI generation</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <i class="fas fa-times text-red-400 mt-1"></i>
+                                    <span><strong class="text-slate-300">ChatGPT:</strong> Generic responses, no
+                                        file/data processing</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <i class="fas fa-times text-red-400 mt-1"></i>
+                                    <span><strong class="text-slate-300">Tableau/Excel:</strong> Complex UX, no AI
+                                        insights</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Solution -->
+                <div class="space-y-6" data-aos="fade-left">
+                    <div class="glass-card p-10 rounded-3xl border-l-4 border-indigo-400">
+                        <h2 class="text-3xl font-display font-bold mb-6 text-indigo-400">Our Innovation</h2>
+                        <p class="text-slate-300 leading-relaxed mb-6">
+                            A single platform that synthesizes <strong class="text-white">Content Generation</strong>,
+                            <strong class="text-white">Data Analysis</strong>, and <strong class="text-white">Active
+                                Recall</strong>.
+                        </p>
+
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3 text-slate-300">
+                                <i class="fas fa-check-circle text-emerald-400"></i>
+                                <span><strong class="text-emerald-300">Multi-Modal Input:</strong> PDF, Excel, Code,
+                                    Text</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-slate-300">
+                                <i class="fas fa-check-circle text-emerald-400"></i>
+                                <span><strong class="text-emerald-300">10x Faster:</strong> Automated study material
+                                    generation</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-slate-300">
+                                <i class="fas fa-check-circle text-emerald-400"></i>
+                                <span><strong class="text-emerald-300">Cloud Synced:</strong> MongoDB Atlas for
+                                    persistence</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-3xl border border-purple-500/30 bg-purple-500/5">
+                        <h3 class="text-xs uppercase font-bold text-purple-400 mb-4 tracking-widest">Tech Foundation
+                        </h3>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            <strong class="text-purple-300">Multi-Model AI:</strong> GPT-4 + Hugging Face (Llama, Qwen,
+                            Mixtral)<br>
+                            <strong class="text-purple-300">Unified Dashboard:</strong> Study tools + Code analysis +
+                            Data viz<br>
+                            <strong class="text-purple-300">Stack:</strong> React 19 + Node.js + Express + Python
+                            Analytics
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Methodology -->
+        <section id="methodology" class="py-24 px-4 bg-slate-900/30 border-y border-white/5">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-4xl font-display font-bold text-center mb-16" data-aos="fade-up">
+                    System <span class="text-gradient">Methodology</span>
+                </h2>
+
+                <div class="space-y-8">
+                    <!-- Layer 1: Input Sources -->
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-blue-500" data-aos="fade-up">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="bg-blue-500/20 p-3 rounded-xl">
+                                <i class="fas fa-cloud-upload-alt text-blue-400 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-black uppercase tracking-wider text-blue-400">Input Layer</h3>
+                                <p class="text-xs text-slate-500">Multiple Data Sources</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <div
+                                class="bg-slate-900/50 p-3 rounded-lg text-center border border-white/5 hover:border-blue-500/30 transition">
+                                <i class="fas fa-file-pdf text-red-400 text-lg mb-1"></i>
+                                <p class="text-[10px] text-slate-400 font-bold">PDF/DOCX</p>
+                            </div>
+                            <div
+                                class="bg-slate-900/50 p-3 rounded-lg text-center border border-white/5 hover:border-blue-500/30 transition">
+                                <i class="fas fa-table text-green-400 text-lg mb-1"></i>
+                                <p class="text-[10px] text-slate-400 font-bold">CSV/XLSX</p>
+                            </div>
+                            <div
+                                class="bg-slate-900/50 p-3 rounded-lg text-center border border-white/5 hover:border-blue-500/30 transition">
+                                <i class="fas fa-code text-purple-400 text-lg mb-1"></i>
+                                <p class="text-[10px] text-slate-400 font-bold">Source Code</p>
+                            </div>
+                            <div
+                                class="bg-slate-900/50 p-3 rounded-lg text-center border border-white/5 hover:border-blue-500/30 transition">
+                                <i class="fas fa-font text-yellow-400 text-lg mb-1"></i>
+                                <p class="text-[10px] text-slate-400 font-bold">Raw Text</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Flow Arrow -->
+                    <div class="flex justify-center">
+                        <i class="fas fa-arrow-down text-cyan-500/30 text-2xl animate-pulse"></i>
+                    </div>
+
+                    <!-- Layer 2: Frontend -->
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-cyan-500" data-aos="fade-up">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="bg-cyan-500/20 p-3 rounded-xl">
+                                <i class="fab fa-react text-cyan-400 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-black uppercase tracking-wider text-cyan-400">Frontend Layer
+                                </h3>
+                                <p class="text-xs text-slate-500">React 19 + Vite + Tailwind CSS</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-[10px] font-bold text-cyan-300">Dashboard
+                                UI</span>
+                            <span
+                                class="px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-[10px] font-bold text-cyan-300">Authentication</span>
+                            <span
+                                class="px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-[10px] font-bold text-cyan-300">File
+                                Upload</span>
+                            <span
+                                class="px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-[10px] font-bold text-cyan-300">Data
+                                Visualization</span>
+                        </div>
+                    </div>
+
+                    <!-- Flow Arrow -->
+                    <div class="flex justify-center">
+                        <i class="fas fa-arrow-down text-indigo-500/30 text-2xl animate-pulse"></i>
+                    </div>
+
+                    <!-- Layer 3: Backend Processing -->
+                    <div class="grid md:grid-cols-2 gap-6" data-aos="fade-up">
+                        <div class="glass-card p-6 rounded-2xl border-l-4 border-indigo-500">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="bg-indigo-500/20 p-3 rounded-xl">
+                                    <i class="fab fa-node text-indigo-400 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-sm font-black uppercase tracking-wider text-indigo-400">Backend API
+                                    </h3>
+                                    <p class="text-xs text-slate-500">Node.js + Express</p>
+                                </div>
+                            </div>
+                            <ul class="space-y-2 text-xs text-slate-400">
+                                <li class="flex items-center gap-2"><i
+                                        class="fas fa-check text-indigo-500 text-[10px]"></i> RESTful API Routes</li>
+                                <li class="flex items-center gap-2"><i
+                                        class="fas fa-check text-indigo-500 text-[10px]"></i> JWT Authentication</li>
+                                <li class="flex items-center gap-2"><i
+                                        class="fas fa-check text-indigo-500 text-[10px]"></i> Cloudinary Integration
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="glass-card p-6 rounded-2xl border-l-4 border-yellow-500">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="bg-yellow-500/20 p-3 rounded-xl">
+                                    <i class="fab fa-python text-yellow-400 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-sm font-black uppercase tracking-wider text-yellow-400">Analytics
+                                        Engine</h3>
+                                    <p class="text-xs text-slate-500">Python + Pandas</p>
+                                </div>
+                            </div>
+                            <ul class="space-y-2 text-xs text-slate-400">
+                                <li class="flex items-center gap-2"><i
+                                        class="fas fa-check text-yellow-500 text-[10px]"></i> Data Analysis (EDA)</li>
+                                <li class="flex items-center gap-2"><i
+                                        class="fas fa-check text-yellow-500 text-[10px]"></i> Statistical Processing
+                                </li>
+                                <li class="flex items-center gap-2"><i
+                                        class="fas fa-check text-yellow-500 text-[10px]"></i> Visualization Generation
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Flow Arrow -->
+                    <div class="flex justify-center">
+                        <i class="fas fa-arrow-down text-purple-500/30 text-2xl animate-pulse"></i>
+                    </div>
+
+                    <!-- Layer 4: AI Processing -->
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-purple-500" data-aos="fade-up">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="bg-purple-500/20 p-3 rounded-xl">
+                                <i class="fas fa-brain text-purple-400 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-black uppercase tracking-wider text-purple-400">Multi-Model AI
+                                    Layer</h3>
+                                <p class="text-xs text-slate-500">Intelligent Content Generation</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div
+                                class="bg-gradient-to-br from-green-500/10 to-emerald-500/10 p-4 rounded-xl border border-green-500/20 text-center">
+                                <i class="fas fa-rocket text-green-400 text-xl mb-2"></i>
+                                <p class="text-xs font-bold text-green-300">GPT-4</p>
+                                <p class="text-[9px] text-slate-500 mt-1">OpenAI API</p>
+                            </div>
+                            <div
+                                class="bg-gradient-to-br from-yellow-500/10 to-orange-500/10 p-4 rounded-xl border border-yellow-500/20 text-center">
+                                <i class="fas fa-cube text-yellow-400 text-xl mb-2"></i>
+                                <p class="text-xs font-bold text-yellow-300">Hugging Face</p>
+                                <p class="text-[9px] text-slate-500 mt-1">Llama, Qwen, Mixtral</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Flow Arrow -->
+                    <div class="flex justify-center">
+                        <i class="fas fa-arrow-down text-green-500/30 text-2xl animate-pulse"></i>
+                    </div>
+
+                    <!-- Layer 5: Database -->
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-green-500" data-aos="fade-up">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="bg-green-500/20 p-3 rounded-xl">
+                                <i class="fas fa-database text-green-400 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-black uppercase tracking-wider text-green-400">Data Persistence
+                                </h3>
+                                <p class="text-xs text-slate-500">MongoDB Atlas Cloud</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-green-500/10 border border-green-500/30 rounded-full text-[10px] font-bold text-green-300">User
+                                Data</span>
+                            <span
+                                class="px-3 py-1 bg-green-500/10 border border-green-500/30 rounded-full text-[10px] font-bold text-green-300">Generated
+                                Content</span>
+                            <span
+                                class="px-3 py-1 bg-green-500/10 border border-green-500/30 rounded-full text-[10px] font-bold text-green-300">Analytics
+                                Results</span>
+                            <span
+                                class="px-3 py-1 bg-green-500/10 border border-green-500/30 rounded-full text-[10px] font-bold text-green-300">File
+                                Metadata</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Modules Grid -->
+        <section id="modules" class="py-24 px-4 max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-3xl font-bold mb-4" data-aos="fade-up">Core <span
+                        class="text-gradient">Capabilities</span></h2>
+                <p class="text-slate-400 max-w-xl mx-auto text-sm">Six integrated modules powering the Cognify
+                    platform.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- AI Study Tools -->
+                <div class="col-span-1 lg:col-span-3 pb-4">
+                    <h3
+                        class="text-xs uppercase tracking-widest text-slate-500 font-bold border-b border-slate-800 pb-2 mb-6">
+                        Generative Study Suite</h3>
+                </div>
+
+                <!-- Mod 1 -->
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden group" data-aos="fade-up"
+                    data-aos-delay="0">
+                    <div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fas fa-bolt text-6xl text-amber-400"></i>
+                    </div>
+                    <div
+                        class="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center mb-4 border border-amber-500/20">
+                        <i class="fas fa-magic text-amber-400"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">MCQ Generator</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed">Transforms text/PDFs into exam-style multiple
+                        choice questions with automated grading.</p>
+                </div>
+
+                <!-- Mod 2 -->
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden group" data-aos="fade-up"
+                    data-aos-delay="100">
+                    <div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fas fa-layer-group text-6xl text-cyan-400"></i>
+                    </div>
+                    <div
+                        class="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center mb-4 border border-cyan-500/20">
+                        <i class="fas fa-clone text-cyan-400"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Flashcards Engine</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed">Concept-term extraction logic creates instant
+                        revision decks for active recall.</p>
+                </div>
+
+                <!-- Mod 3 -->
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden group" data-aos="fade-up"
+                    data-aos-delay="200">
+                    <div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fas fa-align-left text-6xl text-emerald-400"></i>
+                    </div>
+                    <div
+                        class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center mb-4 border border-emerald-500/20">
+                        <i class="fas fa-file-alt text-emerald-400"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Smart Summarizer</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed">Condenses lengthy documentation into key bullet
+                        points and digestible abstracts.</p>
+                </div>
+
+                <!-- Data & Code -->
+                <div class="col-span-1 lg:col-span-3 pt-8 pb-4">
+                    <h3
+                        class="text-xs uppercase tracking-widest text-slate-500 font-bold border-b border-slate-800 pb-2 mb-6">
+                        Technical & Analytical Suite</h3>
+                </div>
+
+                <!-- Mod 4 -->
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden group" data-aos="fade-up"
+                    data-aos-delay="300">
+                    <div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fas fa-code text-6xl text-pink-400"></i>
+                    </div>
+                    <div
+                        class="w-10 h-10 rounded-lg bg-pink-500/10 flex items-center justify-center mb-4 border border-pink-500/20">
+                        <i class="fas fa-terminal text-pink-400"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Code Logic Auditor</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed">Analyzes snippets for syntax errors, optimization
+                        potential, and security flaws.</p>
+                </div>
+
+                <!-- Mod 5 -->
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden group" data-aos="fade-up"
+                    data-aos-delay="400">
+                    <div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fas fa-chart-bar text-6xl text-purple-400"></i>
+                    </div>
+                    <div
+                        class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center mb-4 border border-purple-500/20">
+                        <i class="fas fa-search-dollar text-purple-400"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Auto-Data Analyst</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed">Performs automated EDA (Exploratory Data Analysis)
+                        on CSV/Excel uploads.</p>
+                </div>
+
+                <!-- Mod 6 -->
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden group" data-aos="fade-up"
+                    data-aos-delay="500">
+                    <div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fas fa-chart-pie text-6xl text-blue-400"></i>
+                    </div>
+                    <div
+                        class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center mb-4 border border-blue-500/20">
+                        <i class="fas fa-chart-line text-blue-400"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Visual Insight Engine</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed">Generates charts and dashboards from raw data for
+                        visual storytelling.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Architecture -->
+        <section id="architecture" class="py-24 px-4 bg-slate-900/30 border-y border-white/5">
+            <div class="max-w-6xl mx-auto text-center">
+                <h2 class="font-display text-3xl font-bold mb-16" data-aos="fade-up">System <span
+                        class="text-indigo-400">Architecture</span></h2>
+
+                <div class="relative grid md:grid-cols-3 gap-8 items-center">
+                    <!-- Connector Line (Desktop) -->
+                    <div class="hidden md:block flow-line"></div>
+
+                    <!-- Client -->
+                    <div class="relative z-10 glass-card p-8 rounded-2xl border-t-4 border-cyan-500"
+                        data-aos="zoom-in-right">
+                        <div
+                            class="w-16 h-16 mx-auto bg-slate-800 rounded-full flex items-center justify-center mb-4 shadow-xl border border-cyan-500/30">
+                            <i class="fas fa-laptop-code text-2xl text-cyan-400"></i>
+                        </div>
+                        <h3 class="font-bold text-white mb-2">Frontend Client</h3>
+                        <p class="text-xs text-slate-400 font-mono">React 19 • Tailwind CSS</p>
+                        <p class="text-xs text-slate-500 mt-2">Interactive UI for file uploads & visualization</p>
+                    </div>
+
+                    <!-- Server -->
+                    <div class="relative z-10 glass-card p-8 rounded-2xl border-t-4 border-indigo-500 transform md:scale-110"
+                        data-aos="zoom-in">
+                        <div
+                            class="absolute -top-4 left-1/2 -translate-x-1/2 px-3 py-1 bg-indigo-600 rounded-full text-[10px] font-bold tracking-widest uppercase">
+                            Orchestrator</div>
+                        <div
+                            class="w-20 h-20 mx-auto bg-slate-800 rounded-full flex items-center justify-center mb-4 shadow-xl border border-indigo-500/30">
+                            <i class="fas fa-server text-3xl text-indigo-400"></i>
+                        </div>
+                        <h3 class="font-bold text-white mb-2">API Server</h3>
+                        <p class="text-xs text-slate-400 font-mono">Node.js • Express</p>
+                        <p class="text-xs text-slate-500 mt-2">Routes requests, handles Auth & Storage</p>
+                    </div>
+
+                    <!-- AI/DB -->
+                    <div class="relative z-10 glass-card p-8 rounded-2xl border-t-4 border-purple-500"
+                        data-aos="zoom-in-left">
+                        <div
+                            class="w-16 h-16 mx-auto bg-slate-800 rounded-full flex items-center justify-center mb-4 shadow-xl border border-purple-500/30">
+                            <i class="fas fa-brain text-2xl text-purple-400"></i>
+                        </div>
+                        <h3 class="font-bold text-white mb-2">Intelligence Layer</h3>
+                        <p class="text-xs text-slate-400 font-mono">MongoDB • Python Engine</p>
+                        <p class="text-xs text-slate-500 mt-2">Data Persistence & ML Inference</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack List -->
+        <section id="tech" class="py-20 px-4 max-w-4xl mx-auto text-center" data-aos="fade-up">
+            <h2 class="text-sm font-bold uppercase tracking-widest text-slate-500 mb-10">Powered By</h2>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-70">
+                <div class="flex flex-col items-center gap-2 hover:opacity-100 transition-opacity">
+                    <i class="fab fa-react text-4xl text-cyan-400"></i>
+                    <span class="text-xs font-mono">React</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 hover:opacity-100 transition-opacity">
+                    <i class="fab fa-node text-4xl text-green-500"></i>
+                    <span class="text-xs font-mono">Node.js</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 hover:opacity-100 transition-opacity">
+                    <i class="fas fa-database text-4xl text-emerald-500"></i>
+                    <span class="text-xs font-mono">MongoDB</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 hover:opacity-100 transition-opacity">
+                    <i class="fab fa-python text-4xl text-yellow-500"></i>
+                    <span class="text-xs font-mono">Python</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 hover:opacity-100 transition-opacity">
+                    <i class="fas fa-wind text-4xl text-cyan-300"></i>
+                    <span class="text-xs font-mono">Tailwind</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team -->
+        <section id="team" class="py-24 px-4 border-t border-white/5 bg-slate-950">
+            <div class="max-w-4xl mx-auto text-center">
+                <i class="fas fa-graduation-cap text-3xl text-slate-700 mb-8"></i>
+
+                <div class="flex flex-col md:flex-row justify-center gap-6">
+                    <!-- Guide -->
+                    <div class="glass-card p-8 rounded-2xl flex-1 max-w-xs mx-auto text-left hover:bg-slate-800/50">
+                        <p class="text-[9px] uppercase font-bold text-indigo-400 mb-3 tracking-widest">Project Guide</p>
+                        <h3 class="text-xl font-display font-bold text-white">Dr. Tapan Kumar Dey</h3>
+                        <p class="text-xs text-slate-500 mt-1">Department of CSE</p>
+                    </div>
+
+                    <!-- Developer -->
+                    <div class="glass-card p-8 rounded-2xl flex-1 max-w-xs mx-auto text-left hover:bg-slate-800/50">
+                        <p class="text-[9px] uppercase font-bold text-purple-400 mb-3 tracking-widest">Lead Developer
+                        </p>
+                        <h3 class="text-xl font-display font-bold text-white">Ankush Verma</h3>
+                        <p class="text-xs text-slate-500 mt-1 font-mono">23FE10CSE00100</p>
+                    </div>
+                </div>
+
+                <div class="mt-16">
+                    <p class="text-[10px] text-slate-600 uppercase tracking-[0.3em] font-bold">Manipal University Jaipur
+                        • 2026</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Init Animations
+        AOS.init({
+            once: true,
+            offset: 40,
+            duration: 800,
+        });
+
+        // Timer Logic
+        let seconds = 0;
+        let timerId;
+
+        function init() {
+            timerId = setInterval(() => {
+                seconds++;
+                updateTimerDisplay();
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+            const s = (seconds % 60).toString().padStart(2, '0');
+            document.getElementById('displayTime').innerText = `${m}:${s}`;
+
+            const status = document.getElementById('timerStatus');
+
+            if (seconds > 480) { // 8 mins warning
+                status.classList.replace('bg-emerald-500', 'bg-amber-500');
+                status.classList.replace('shadow-[0_0_10px_#10b981]', 'shadow-[0_0_10px_#f59e0b]');
+            }
+            if (seconds > 600) { // 10 mins overtime
+                status.classList.replace('bg-amber-500', 'bg-red-500');
+                status.classList.replace('shadow-[0_0_10px_#f59e0b]', 'shadow-[0_0_10px_#ef4444]');
+            }
+        }
+    </script>
+</body>
+
+</html>

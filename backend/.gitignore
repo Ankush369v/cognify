@@ -1,0 +1,9 @@
+node_modules/
+package-lock.json
+.env
+*.csv
+*.xlsx
+temp_dataset.*
+.DS_Store
+dist/
+build/
