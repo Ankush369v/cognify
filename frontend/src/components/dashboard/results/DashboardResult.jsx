@@ -211,7 +211,7 @@ const DashboardResult = ({ content }) => {
             {content.preview && content.preview.length > 0 && (
                 <div className="bg-slate-900/40 border border-white/5 rounded-2xl sm:rounded-3xl p-5 sm:p-8 backdrop-blur-sm overflow-hidden">
                     <SectionHeader icon={Layers} title="Dataset Snapshot" color="text-indigo-300" />
-                    <div className="overflow-x-auto rounded-xl border border-white/5">
+                    <div className="overflow-x-auto overflow-y-auto rounded-xl border border-white/5 max-h-72">
                         <table className="w-full text-left border-collapse min-w-[600px]">
                             <thead>
                                 <tr className="bg-white/5 border-b border-white/10">
@@ -221,7 +221,7 @@ const DashboardResult = ({ content }) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {content.preview.slice(0, 5).map((row, i) => (
+                                {content.preview.map((row, i) => (
                                     <tr key={i} className="border-b border-white/5 hover:bg-white/5 transition-colors">
                                         {Object.values(row).map((val, j) => (
                                             <td key={j} className="px-4 py-3 text-sm text-slate-300 font-light">{String(val)}</td>
@@ -230,11 +230,6 @@ const DashboardResult = ({ content }) => {
                                 ))}
                             </tbody>
                         </table>
-                        {content.preview.length > 5 && (
-                            <div className="p-3 bg-slate-950/50 text-center">
-                                <p className="text-[10px] text-slate-500 italic uppercase">Showing top 5 of {content.preview.length}+ rows</p>
-                            </div>
-                        )}
                     </div>
                 </div>
             )}
