@@ -18,8 +18,8 @@
 
 ### 🌟 Latest Upgrades:
 - 🧠 **Master-Level Intelligence**: Generation engines now use expert-level personas (Security Architects, Learning Scientists) for industrial-strength accuracy.
-- 🛡️ **Reliability-First Architecture**: Strictly supports **PDF and TXT** documents for unbreakable text extraction and AI processing.
-- 📊 **Precision Analytics**: Automated Exploratory Data Analysis (EDA) with strategic, executive-level insights.
+- 🛡️ **Reliability-First Architecture**: High-fidelity text extraction for **PDF and TXT** documents.
+- 📊 **Precision Analytics**: Automated Exploratory Data Analysis (EDA) for **CSV and Excel** datasets with strategic, executive-level insights.
 - 📑 **Premium PDF Exports**: Fully formatted, color-coded reports with Big O complexity and architectural risk maps.
 
 ---
@@ -310,8 +310,10 @@ This project is developed for educational purposes.
 
 ## 👨‍💻 Developer
 
-**Ankush Verma**
-- GitHub: [@Ankush-verma-Source](https://github.com/Ankush-verma-Source)
+**Ankush Verma** (Lead Developer)
+- **Affiliation**: Manipal University Jaipur (MUJ)
+- **Project Type**: Final Year PBL Project (2026)
+- **Project Guide**: Dr. Tapan Kumar Dey
 
 ---
 

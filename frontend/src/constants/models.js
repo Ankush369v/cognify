@@ -81,9 +81,9 @@ export const MODELS = [
         category: 'data',
         color: 'text-teal-400',
         bg: 'bg-teal-500/10',
-        tag: 'Data Specialist',
-        desc: 'Insights & Trends',
-        fullDesc: 'A lightweight champion for data structures. Identifies hidden patterns and anomalies in datasets.',
-        bestFor: ['Trend Detection', 'Anomaly Discovery', 'Dataset Summaries']
+        tag: 'Visual Analyst',
+        desc: 'Visuals & Insights',
+        fullDesc: 'A lightweight champion for data structures and visualization. Specialized in generating narrative insights for interactive dashboards.',
+        bestFor: ['Data Visualization', 'Interactive Dashboards', 'Trend Analysis']
     }
 ];

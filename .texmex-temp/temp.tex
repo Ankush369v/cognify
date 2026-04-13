@@ -1,0 +1,580 @@
+% report.tex
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{times}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{geometry}
+\geometry{left=1in, right=1in, top=1in, bottom=1in}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tocloft}
+\renewcommand{\cftdot}{}          % Remove dot leaders in TOC
+
+\setlist{nosep, topsep=4pt}
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\normalsize\itshape}{\thesubsubsection}{0.5em}{}
+
+%-------------------------
+% Metadata
+\newcommand{\ProjectTitle}{Cognify: An AI-Powered Learning Platform for Intelligent Content Generation and Data Visualisation}
+\newcommand{\StudentName}{Ankush Verma}
+\newcommand{\RegNo}{23FE10CSE00100}
+\newcommand{\Semester}{6th Semester}
+\newcommand{\Department}{Department of Computer Science and Engineering}
+\newcommand{\School}{School of Computer Science and Engineering}
+\newcommand{\University}{Manipal University Jaipur}
+\newcommand{\Supervisor}{Dr. Tapan Kumar Dey}
+\newcommand{\AcademicSession}{Jan--May 2026}
+%-------------------------
+
+\captionsetup{font={small}}
+\usepackage{fancyhdr}
+\pagestyle{plain}
+\pagenumbering{arabic}
+
+\begin{document}
+
+% ---------- COVER PAGE ----------
+\begin{titlepage}
+  \begin{center}
+    {\Large\bfseries A Report on \\[6pt] \ProjectTitle \par}
+    \vspace{0.6cm}
+    {\large carried out as part of the course Project Based Learning \par}
+    \vspace{1.2cm}
+    \textbf{Submitted by}\\[3pt]
+    {\Large \StudentName \\[2pt] \RegNo \\[6pt] \Semester \par}
+
+    \vspace{0.6cm}
+    {\large in partial fulfilment for the award of the degree\\[4pt]
+    of\\[4pt]
+    \textbf{BACHELOR OF TECHNOLOGY}\\[4pt]
+    in\\[4pt]
+    \textbf{Computer Science \& Engineering}}
+    \vspace{0.8cm}
+
+    \vspace{1cm}
+    \includegraphics[width=0.45\textwidth]{logo.png}
+    \vspace{0.4cm}
+
+    {\small\textbf{Department of Computer Science \& Engineering\\
+    \School\\
+    \University}\\[4pt]
+    \AcademicSession}
+  \end{center}
+\end{titlepage}
+
+% ---------- SECOND COVER PAGE ----------
+\begin{titlepage}
+  \begin{center}
+    {\Large\bfseries A Report on \\[6pt] \ProjectTitle \par}
+    \vspace{0.6cm}
+    {\large carried out as part of the course Project Based Learning \par}
+    \vspace{1.2cm}
+    \textbf{Submitted by}\\[3pt]
+    {\Large \StudentName \\[2pt] \RegNo \\[6pt] \Semester \par}
+
+    \vspace{0.6cm}
+    {\large in partial fulfilment for the award of the degree\\[4pt]
+    of\\[4pt]
+    \textbf{BACHELOR OF TECHNOLOGY}\\[4pt]
+    in\\[4pt]
+    Computer Science \& Engineering}
+    \vspace{1.2cm}
+  \end{center}
+  \vspace{1cm}
+  {\large
+  Under the Guidance of : \\
+  Guide Name : \textbf{\Supervisor} \\
+  Guide Signature (with date) : \underline{\hspace{5cm}} \\
+  }
+\end{titlepage}
+
+% ---------- CERTIFICATE ----------
+\thispagestyle{plain}
+\begin{flushleft}
+\includegraphics[width=4cm]{logo.png}
+\end{flushleft}
+
+\begin{center}
+{\bfseries \Department \\ \School}
+\end{center}
+
+\begin{flushright}
+\textbf{Date:} \underline{\hspace{3cm}}
+\end{flushright}
+
+\vspace{1cm}
+\begin{center}
+{\Large \textbf{CERTIFICATE}}
+\addcontentsline{toc}{section}{Certificate}
+\end{center}
+
+This is to certify that the project entitled \textbf{``\ProjectTitle''} is a bonafide work carried out as PBL-4 \textit{End Term Assessment} in partial fulfillment for the award of the degree of \textbf{Bachelor of Technology} in \textbf{Computer Science and Engineering}, by \textbf{\StudentName} bearing registration number \textbf{\RegNo}, during the academic semester \textbf{\Semester} of year 2025--2026.
+
+\vspace{2cm}
+
+\noindent
+\begin{minipage}[t]{0.45\textwidth}
+\textbf{Place:} Manipal University Jaipur, Jaipur
+\end{minipage}%
+\begin{minipage}[t]{0.5\textwidth}
+\begin{flushright}
+\textbf{Name of the project guide:}\\[0.2cm]
+\Supervisor\\[1.5cm]
+\textbf{Signature:}\\[0.2cm]
+\underline{\hspace{5cm}}
+\end{flushright}
+\end{minipage}
+\clearpage
+
+% ---------- ACKNOWLEDGEMENT ----------
+\begin{center}
+{\Large \textbf{Acknowledgement}}
+\end{center}
+\addcontentsline{toc}{section}{Acknowledgement}
+\vspace{0.8cm}
+
+I would like to express my sincere gratitude to my project supervisor, \textbf{\Supervisor}, for his consistent guidance and support throughout the development of this project. His technical insights and constructive feedback at every stage were invaluable in shaping the direction and quality of this work.
+
+I am also thankful to \textbf{Dr. Neha Chaudhary}, Head of the \Department, for creating an environment that encourages self-driven academic projects. My appreciation also goes to the broader open-source communities behind React, Node.js, and the Hugging Face ecosystem, whose publicly available tools and documentation made projects like this possible.
+
+Finally, I want to acknowledge the computing resources and cloud services provided through MongoDB Atlas, Cloudinary, OpenAI, and Hugging Face, which formed the backbone of this platform's infrastructure.
+
+\vspace{2cm}
+\noindent
+\textbf{Registration No.:} \RegNo \hfill \textbf{Student Name:} \StudentName
+\clearpage
+
+% ---------- ABSTRACT ----------
+\begin{center}
+{\Large \textbf{Abstract}}
+\end{center}
+\addcontentsline{toc}{section}{Abstract}
+\vspace{0.8cm}
+
+\textbf{Cognify} is a full-stack, AI-powered learning platform built to help students and developers work more productively with information. Rather than simply organizing content, the platform actively transforms raw input—study documents, source code, and datasets—into ready-to-use educational materials.
+
+The system supports five distinct tools: an MCQ Generator that creates multiple-choice questions from uploaded PDFs or typed text, a Flashcard Creator for interactive study cards, an AI Summarizer for concise document overviews, a Code Tools module for explaining and reviewing code snippets, and a Data Visualizer that performs automated Exploratory Data Analysis (EDA) on CSV and Excel files.
+
+Technically, the platform is built on React 19 for the frontend and Node.js with Express 5.1 for the backend. A custom Python engine handles the statistical analysis portion of the Data Visualizer, using Pandas, NumPy, and SciPy. AI generation is handled through a unified routing layer that connects to OpenAI, and Hugging Face Models, giving users the flexibility to choose from multiple models. All user data and generated content are stored persistently in MongoDB Atlas, with files managed through Cloudinary.
+
+\clearpage
+\tableofcontents
+\clearpage
+
+% ---------- 1 Introduction ----------
+\section{Introduction}
+
+\subsection{Background and Motivation}
+
+Students today have access to more learning material than ever before, yet the challenge of actually processing and retaining that information remains just as difficult. Reading a 40-page PDF and extracting what matters, reviewing your own code for correctness, or making sense of a raw dataset without a data science background—these are common problems that most learners face without effective tools.
+
+Existing solutions tend to be either too specialised (a dedicated quiz app, a standalone data tool) or too general-purpose (ChatGPT, which requires careful manual prompting). There is a clear gap for a platform that combines multiple targeted learning utilities under one roof, with persistent storage and a clean user experience.
+
+Cognify was built to address this gap. The idea was simple: create a single platform where a student can upload a document and immediately get MCQs to test themselves, flashcards to revise with, or a summary to quickly grasp the topic—without switching between different apps or learning to write prompts.
+
+\subsection{Objective of the Project}
+
+The primary objectives of the Cognify project are:
+
+\begin{itemize}
+    \item To build a reliable, multi-tool AI platform that processes user-provided content (documents, code, and datasets) and returns structured, actionable output.
+    \item To integrate multiple AI providers (OpenAI, Hugging Face Models) under a unified interface, giving users the flexibility to select different models for different tasks.
+    \item To implement an automated Python-based EDA engine that generates charts and statistical insights from CSV and Excel files without requiring any coding from the user.
+    \item To maintain a personalised content library where all generated content is saved and retrievable, supporting ongoing study sessions.
+    \item To deliver a polished, responsive user interface that prioritises usability and reduces friction during intensive study or development sessions.
+\end{itemize}
+
+\subsection{Project Scope}
+
+Cognify is scoped as a complete, deployable web application covering both the frontend and backend. The platform supports the following user-facing features:
+
+\begin{itemize}
+    \item \textbf{MCQ Generator:} Accepts PDF or TXT files and typed text. Generates configurable questions with difficulty level, question style (conceptual/fact-based), tone, target audience, and Bloom's taxonomy level.
+    \item \textbf{Flashcard Creator:} Generates study cards from documents or text. Supports front-card styles (question or term) and adjustable detail levels.
+    \item \textbf{AI Summarizer:} Produces summaries in multiple formats (bullet points, paragraph, executive summary) with configurable tone and length.
+    \item \textbf{Code Tools:} Accepts pasted code or uploaded code files. Supports two modes—explain (line-by-line breakdown) and review (critique and suggestions).
+    \item \textbf{Data Visualizer:} Accepts CSV and Excel files. Runs a Python EDA engine to produce statistical charts (histograms, pie charts, scatter plots, bar charts) and AI-generated insights.
+\end{itemize}
+
+The platform also includes user authentication (JWT-based), a personal dashboard for viewing and deleting saved content, and a profile management page. Out of scope for this version: real-time collaboration, mobile native apps, and Word document (.docx) parsing.
+
+\subsection{Technology Stack}
+
+\subsubsection{Hardware Requirements}
+\begin{itemize}
+  \item \textbf{Processor:} Multi-core CPU (Intel i5/Ryzen 5 or equivalent).
+  \item \textbf{Memory:} 8 GB RAM minimum; 16 GB recommended for running both frontend and backend locally.
+  \item \textbf{Network:} Broadband internet connection required for AI inference API calls and cloud synchronisation.
+\end{itemize}
+
+\subsubsection{Software Requirements}
+\begin{itemize}
+  \item \textbf{Frontend:} React 19, React Router DOM 7, Vite, Tailwind CSS 3, Framer Motion, Recharts, Lucide React, Axios.
+  \item \textbf{Backend:} Node.js 22, Express 5.1, Mongoose, Multer, Cloudinary SDK, pdf-parse, xlsx, uuid, bcryptjs, jsonwebtoken, validator.
+  \item \textbf{Python Analytics:} Python 3.x, Pandas, NumPy, SciPy, openpyxl.
+  \item \textbf{Database:} MongoDB Atlas (cloud-hosted).
+  \item \textbf{AI Services:} OpenAI API (GPT-4o, GPT-4o-mini), Hugging Face Router (Meta Llama 3.1 8B, Qwen 2.5 7B, Qwen 2.5 Coder, Llama 3.2 1B/3B).
+  \item \textbf{Storage:} Cloudinary (document and file uploads).
+\end{itemize}
+
+\clearpage
+
+% ---------- 2 Design Description ----------
+\section{Design Description}
+
+\subsection{System Architecture}
+
+Cognify follows a layered, service-oriented architecture where each concern is handled by a dedicated component. The system has three primary layers:
+
+\begin{itemize}
+    \item \textbf{Frontend (React 19):} A single-page application built with Vite. It manages user authentication state, handles file uploads, and renders the AI-generated output (charts, cards, text) using Recharts and custom-built result components. Navigation is handled through React Router DOM 7.
+
+    \item \textbf{Backend API (Node.js + Express 5.1):} The central server that handles all business logic. It follows an MVC pattern—routes define endpoints, controllers orchestrate logic, and feature services contain the tool-specific AI workflows. Authentication is enforced via JWT middleware on all protected routes.
+
+    \item \textbf{Feature Services (Node.js + Python):} Each tool has a dedicated service module (\texttt{mcqService.js}, \texttt{summaryService.js}, \texttt{flashcardService.js}, \texttt{codeService.js}, \texttt{dataService.js}). The Data Visualizer additionally spawns a Python subprocess (\texttt{eda\_engine.py}) for statistical computation before handing results to the AI layer for insight generation.
+\end{itemize}
+
+\subsection{AI Routing Layer}
+
+One of the more technically interesting aspects of Cognify is its unified AI routing layer, implemented in \texttt{common.js} and \texttt{services/}. Rather than hard-coding a single AI provider, the system maps user-facing model selections to actual API endpoints at runtime:
+
+\begin{itemize}
+    \item Models prefixed with \texttt{gpt-} or \texttt{o1-} are routed to the OpenAI API.
+    % \item Models prefixed with \texttt{gemini-} are routed to the Google Gemini API.
+    \item All other model identifiers (Llama, Qwen) are routed to the Hugging Face Router endpoint, which provides OpenAI-compatible inference for open-source models.
+\end{itemize}
+
+This design means adding a new AI model requires only a one-line mapping update in the \texttt{mapModelId} function, without changing any feature service logic.
+
+\subsection{Data Flow}
+
+A typical request through the system follows this path:
+
+\begin{enumerate}
+    \item User fills out a tool form on the frontend and submits (with an optional file attachment).
+    \item The frontend sends a \texttt{multipart/form-data} POST request to the backend with the JWT token in the \texttt{Authorization} header.
+    \item The Express route handler verifies the JWT via \texttt{isLoggedIn} middleware.
+    \item If a file is present, Multer uploads it to Cloudinary and returns a URL. The URL is saved to the user's \texttt{fileUrl} array in MongoDB.
+    \item The relevant feature service extracts text from the file (for document tools) or parses data rows (for the Visualizer) and constructs a structured AI prompt.
+    \item The AI routing layer sends the prompt to the selected model and returns the raw response.
+    \item The controller parses the JSON from the AI response, saves the result to the \texttt{GeneratedContent} collection, and returns it to the frontend.
+    \item The frontend renders the result component appropriate for the tool type.
+\end{enumerate}
+
+\subsection{Use Case Diagram}
+The Use Case Diagram identifies all actors interacting with Cognify and maps them to the system functions they can perform.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{images/use_case_diagram_1776101709342.png}
+  \caption{Use Case Diagram: User and System Interactions}
+\end{figure}
+
+\subsection{System Architecture Diagram}
+The following three-tier architecture diagram illustrates the technology components across the Frontend, Backend, and External Services layers and how data flows between them.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{images/architecture_diagram_1776101686401.png}
+  \caption{Three-Tier System Architecture: Frontend, Backend API, and External Services}
+\end{figure}
+
+\subsection{Data Flow Diagram -- Level 0 (Context Diagram)}
+The Level 0 DFD shows the high-level boundary of the Cognify system and its interactions with all external entities: the user, AI providers, MongoDB Atlas, and Cloudinary.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{images/dfd_level0_1776101852736.png}
+  \caption{DFD Level 0: System Boundary and External Entity Interactions}
+\end{figure}
+
+\subsection{Entity Relationship Diagram}
+The ER Diagram captures the relationship between users and their generated content. Each user can have many generated content records; each record belongs to exactly one user.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{images/er_diagram_1776101738067.png}
+  \caption{ER Diagram: User and GeneratedContent Entities with Crow's Foot Notation}
+\end{figure}
+
+\subsection{Sequence Diagram -- MCQ Generation Flow}
+The Sequence Diagram traces a complete MCQ generation request from the user's form submission to the final rendered output, showing how each system component participates in the process.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{images/sequence_diagram_1776101767562.png}
+  \caption{UML Sequence Diagram: MCQ Generation Request Lifecycle}
+\end{figure}
+
+\subsection{Component Diagram}
+The Component Diagram shows all modules of the Cognify system and their dependencies, grouped by subsystem: Frontend, Backend, External APIs, and the Python analytics engine.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{images/component_diagram_1776101799233.png}
+  \caption{UML Component Diagram: Module Dependencies and Interfaces}
+\end{figure}
+
+\subsection{Deployment Diagram}
+The Deployment Diagram shows how the application is distributed across physical and cloud hosting nodes for production, including Vercel, Render, MongoDB Atlas, Cloudinary, and the AI provider infrastructure.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{images/deployment_diagram_1776101828386.png}
+  \caption{UML Deployment Diagram: Production Infrastructure and Node Distribution}
+\end{figure}
+
+\clearpage
+
+% ---------- 3 Project Description ----------
+\section{Project Description}
+
+\subsection{Database Schema}
+
+The application uses MongoDB Atlas with two primary collections:
+
+\begin{itemize}
+  \item \textbf{users:} Stores authentication credentials (username, email, bcrypt-hashed password), an array of uploaded file references (Cloudinary URL and a UUID-based file ID), and a reference array to generated content documents.
+  \item \textbf{generatedcontents:} A flexible collection storing the output of all five tools. The \texttt{type} field distinguishes between tool outputs, and the \texttt{data} field stores the raw AI response as a Mixed schema to accommodate different output shapes.
+\end{itemize}
+
+\subsubsection*{User Model Fields}
+\begin{itemize}
+  \item \textbf{username, email} --- Unique string identifiers.
+  \item \textbf{name} --- Display name for the profile.
+  \item \textbf{password} --- bcrypt-hashed string (salt rounds: 10).
+  \item \textbf{fileUrl} --- Array of \texttt{\{ path: String, fileId: String \}} objects.
+  \item \textbf{generatedContent} --- Array of ObjectId references.
+  \item \textbf{createdAt, updatedAt} --- Mongoose timestamps.
+\end{itemize}
+
+\subsubsection*{GeneratedContent Model Fields}
+\begin{itemize}
+  \item \textbf{user} --- ObjectId referencing the User.
+  \item \textbf{type} --- Enum: \texttt{mcq}, \texttt{summary}, \texttt{review}, \texttt{explain}, \texttt{flashcards}, \texttt{visualize}.
+  \item \textbf{fileId} --- UUID string linking to the source file in the user's \texttt{fileUrl} array.
+  \item \textbf{meta} --- Mixed object storing generation parameters (model name, difficulty, tone, etc.).
+  \item \textbf{inputContent} --- The original text input or filename.
+  \item \textbf{preview} --- Dataset snapshot rows (used by the Data Visualizer for library re-display).
+  \item \textbf{data} --- The complete AI-generated output (MCQ array, summary string, chart config object, etc.).
+  \item \textbf{createdAt} --- Auto-generated timestamp.
+\end{itemize}
+
+\subsection{Feature Modules}
+
+\subsubsection{MCQ Generator (\texttt{mcqService.js})}
+
+The MCQ service accepts a file (PDF or TXT) or direct text input. It extracts text using \texttt{pdf-parse} (for PDFs) or reads the buffer directly (for TXT), then constructs a structured prompt instructing the AI to return a JSON array of question objects. Each object contains a question string, four options, the correct answer index, and a detailed explanation.
+
+Key configurable parameters include: question count, difficulty level, Bloom's taxonomy level, question style (conceptual vs. fact-based), tone (tricky, academic, direct), target audience, output language, and any additional instructions. The system trims the AI response, strips any markdown code blocks if present, and returns the parsed JSON to the controller.
+
+\subsubsection{Flashcard Creator (\texttt{flashcardService.js})}
+
+Works identically to the MCQ service in terms of input handling. The output JSON schema is an array of \texttt{\{ question, answer \}} pairs, where the ``question'' field contains the front of the card and ``answer'' the back. The front-card style parameter controls whether cards use a question format (``What is photosynthesis?'') or a term format (``Photosynthesis'').
+
+\subsubsection{AI Summarizer (\texttt{summaryService.js})}
+
+Accepts the same input types. The output is a plain text summary (not JSON), making it slightly simpler than the other services. Format options include bullet-point lists, single-paragraph summaries, and executive summaries. Tone options (simple, academic, professional) alter the language register of the response.
+
+\subsubsection{Code Tools (\texttt{codeService.js})}
+
+Accepts pasted code text or uploaded code files. The operation type (explain or review) determines which prompt template is applied. The explainer mode produces a structured breakdown of the code—what each section does, key variables, and the overall logic. The reviewer mode produces a critique with suggestions for improvements, potential bugs, and readability notes.
+
+\subsubsection{Data Visualizer (\texttt{dataService.js})}
+
+This is the most technically complex module. When the user requests an EDA-type analysis:
+
+\begin{enumerate}
+    \item The uploaded CSV or Excel file is fetched from Cloudinary by the \texttt{dataParser.js} utility using the \texttt{axios} library. The file is parsed into structured JSON rows using the \texttt{xlsx} library.
+    \item A Python subprocess is spawned, passing the data file path to \texttt{eda\_engine.py}.
+    \item The Python engine (Pandas, NumPy, SciPy) computes: dataset overview, data quality metrics (missing values, duplicates), univariate statistics (mean, median, std, quartiles, skewness), correlation analysis, and outlier detection (IQR and Z-score methods). It outputs a structured JSON object.
+    \item Back in Node.js, the Python output is parsed and sent to the AI layer with a focused prompt asking for a human-readable executive summary, dynamic dashboard title, and strategic recommendations.
+    \item The AI response is merged with the Python statistics to produce the final report, which includes 6--10 chart configurations ready for Recharts to render.
+\end{enumerate}
+
+If the Python process fails for any reason (missing packages, encoding issues), the system falls back to sending the raw data directly to the AI and requesting a full EDA response. This ensures the user never receives a blank response.
+
+\subsection{File Management}
+
+Files are uploaded from the frontend as \texttt{multipart/form-data}. The backend uses Multer with a custom Cloudinary storage adapter (\texttt{cloudinaryConfig.js}). The storage adapter classifies files by extension:
+
+\begin{itemize}
+    \item \textbf{Raw resource type:} \texttt{.txt}, \texttt{.csv}, \texttt{.xlsx}, \texttt{.xls}, \texttt{.c}, \texttt{.cpp}, \texttt{.js}, \texttt{.py}, \texttt{.java}, \texttt{.doc}, \texttt{.docx}.
+    \item \textbf{Auto resource type:} \texttt{.pdf}, \texttt{.jpg}, \texttt{.png}.
+\end{itemize}
+
+This distinction is critical for CSV and Excel files: Cloudinary's default processing would corrupt binary spreadsheet formats if not treated as raw uploads.
+
+\clearpage
+
+% ---------- 4 Input / Output Form Design ----------
+\section{Input / Output Form Design}
+
+\subsection{UX/UI Design Philosophy}
+
+The Cognify interface follows a dark-first design aesthetic built on Tailwind CSS utility classes. The visual language draws from glassmorphism (frosted card backgrounds, translucent panels) and uses a consistent indigo-to-purple gradient as the primary accent colour. Animations are handled by Framer Motion, keeping transitions smooth and non-jarring.
+
+The layout is responsive across all screen sizes. Navigation changes dynamically based on authentication state—unauthenticated users see Links to the Home, Features, Models, and Documentation pages; authenticated users gain access to the full Dashboard.
+
+\subsection{Key Pages and Components}
+
+\begin{itemize}
+    \item \textbf{Home Page:} Introduces the platform with an animated hero section, a features overview grid, and social proof statistics. The hero section features floating animated nodes representing each of the five tools.
+
+    \item \textbf{Dashboard:} The core experience. A tab-based layout with five tool tabs (MCQ, Flashcards, Summarizer, Code Tools, Data Visualizer), plus a Library tab and Profile tab. The Model Selector component at the top of each tool tab filters available AI models based on the active tool—coding-specific models (e.g., Qwen Coder) only appear under Code Tools, and data-specialist models appear under the Visualizer.
+
+    \item \textbf{Personal Library:} Displays all saved generation results with filter options by type. Each card shows the content type, creation date, and a delete button. Clicking a card opens the full result view in the \texttt{DashboardResult} component.
+
+    \item \textbf{Models Page:} A catalogue of all AI models available on the platform, including capabilities, speed ratings, and which tools each model is best suited for.
+
+    \item \textbf{Documentation Page:} A searchable, categorised reference guide with a sidebar for navigation between sections. Covers all five tools, file format support, and user account management.
+
+    \item \textbf{Features Page:} A marketing-style presentation of each tool with animated progress bars demonstrating relative capabilities (accuracy, speed) and an expandable benefits section.
+\end{itemize}
+
+
+
+\clearpage
+
+% ---------- 5 Testing & Tools Used ----------
+\section{Testing \& Tools Used}
+
+\subsection{Manual Testing Approach}
+
+Given the nature of this project—an AI-integrated full-stack application—the primary testing methodology was systematic manual testing across all five tools and the complete user flow.
+
+\subsubsection{Authentication Tests}
+\begin{itemize}
+    \item Signup with duplicate usernames and emails correctly returns 400 errors.
+    \item Login with incorrect credentials returns a generic ``Invalid username or password'' response (no specific field leakage).
+    \item Accessing any \texttt{/dashboard} or \texttt{/user/generate} route without a token returns a 401 Unauthorized response.
+    \item Tokens expire after 24 hours; expired tokens redirect the user to the login page.
+\end{itemize}
+
+\subsubsection{Feature Tool Tests}
+\begin{itemize}
+    \item \textbf{MCQ Generator:} Tested with PDF, TXT, and direct text input across all difficulty levels and question styles. Verified JSON parsing of AI responses including edge cases where the model returned markdown-wrapped JSON.
+    \item \textbf{Flashcard Creator:} Confirmed correct card structure in both ``question'' and ``term'' front-card styles.
+    \item \textbf{Summarizer:} Verified all three formats (bullet points, paragraph, executive summary) render correctly in the frontend result component.
+    \item \textbf{Code Tools:} Tested explain and review modes with Python, JavaScript, and C++ snippets. Confirmed the \texttt{DashboardResult} component correctly handles both string responses and JSON-structured responses.
+    \item \textbf{Data Visualizer:} Tested with multiple CSV files of varying sizes and column types. Confirmed that Python EDA output correctly feeds into the AI insight generation step, and that the fallback (AI-only) path activates when Python is unavailable.
+\end{itemize}
+
+\subsubsection{Library and Profile Tests}
+\begin{itemize}
+    \item Verified that newly generated content appears immediately in the Library tab.
+    \item Confirmed individual and bulk delete operations work correctly.
+    \item Profile name and email updates were validated for format correctness and reflected in the UI after submission.
+\end{itemize}
+
+\subsection{Tools Used in Development}
+
+\begin{itemize}
+    \item \textbf{Postman:} Used for manual API endpoint testing during backend development.
+    \item \textbf{MongoDB Compass:} Used for inspecting database documents and verifying schema structure.
+    \item \textbf{Vite Dev Server (HMR):} Enabled fast, hot-reload development for the React frontend.
+    \item \textbf{Nodemon:} Provided automatic server restarts during backend development.
+    \item \textbf{VS Code:} Primary development environment with ESLint for code quality enforcement.
+    \item \textbf{Git \& GitHub:} Version control and remote repository management.
+    \item \textbf{Vercel:} Frontend deployment and hosting.
+    \item \textbf{Render:} Backend API server deployment.
+\end{itemize}
+
+\clearpage
+
+% ---------- 6 Implementation & Maintenance ----------
+\section{Implementation \& Maintenance}
+
+\subsection{Deployment Architecture}
+
+The application is deployed across two platforms:
+
+\begin{itemize}
+    \item \textbf{Frontend (Vercel):} The React application is built with \texttt{vite build} and deployed to Vercel. The \texttt{VITE\_API\_URL} environment variable is set to point to the production backend. Vercel handles automatic HTTPS and global CDN distribution.
+
+    \item \textbf{Backend (Render):} The Node.js server runs as a Web Service on Render. All environment variables (MongoDB URI, AI API keys, Cloudinary credentials, JWT secret) are configured through Render's dashboard. The Python runtime is available on Render by default; Python dependencies are installed via a build command that runs \texttt{pip install pandas numpy scipy openpyxl} before starting the Node server.
+
+    \item \textbf{Database (MongoDB Atlas):} A dedicated Atlas cluster is used for production data. Network access is configured to allow connections from Render's IP ranges.
+\end{itemize}
+
+\subsection{Security Considerations}
+
+\begin{itemize}
+    \item \textbf{Authentication:} All passwords are hashed using bcryptjs with a salt factor of 10 before storage. JWT tokens are signed with a strong secret key and expire after 24 hours.
+    \item \textbf{Input Validation:} The \texttt{validator.js} library is used on the profile update endpoint to validate email format. All required fields are checked before processing.
+    \item \textbf{CORS Policy:} The backend allows requests only from the production frontend domain and localhost during development.
+    \item \textbf{Error Handling:} A global Express error handler catches all unhandled errors. In development mode, full stack traces are returned to aid debugging; in production, only a generic message is sent to the client.
+\end{itemize}
+
+\subsection{Maintenance Practices}
+
+\begin{itemize}
+    \item \textbf{AI Prompt Versioning:} All system prompts are maintained within their respective service files. When model behaviour changes (e.g., a model starts responding in a different format), the prompt and JSON parser in that service are updated accordingly.
+    \item \textbf{Dependency Management:} Regular \texttt{npm audit} checks are run to identify and resolve security vulnerabilities in Node.js dependencies. Python dependencies are version-pinned in \texttt{requirements.txt}.
+    \item \textbf{Database Monitoring:} MongoDB Atlas provides built-in monitoring dashboards. Connection counts, query performance, and storage usage are reviewed periodically.
+    \item \textbf{Model Catalogue Updates:} As new AI models become available through Hugging Face or OpenAI, they are added to the frontend \texttt{models.js} constants file and the backend \texttt{mapModelId} function.
+\end{itemize}
+
+\clearpage
+
+% ---------- 7 Conclusion and Future Work ----------
+\section{Conclusion and Future Work}
+
+\subsection{Conclusion}
+
+Cognify successfully delivers on its core objective: a single, cohesive platform where students and developers can transform raw information into structured, usable learning content using the power of modern AI models.
+
+The five implemented tools cover the most common educational workflows—testing oneself on material, creating revision aids, getting quick summaries, understanding code, and making sense of data—without requiring the user to know how to write prompts or integrate APIs themselves. The multi-model architecture ensures that users are not locked into a single AI provider, and the Python-backed EDA engine adds genuine analytical depth to the data visualization tool beyond what a purely language-model-based approach could provide.
+
+The project also demonstrates how a relatively lean technical team can build a production-ready, full-stack AI application by thoughtfully combining cloud services (MongoDB Atlas, Cloudinary, Vercel, Render) with open-source libraries and public AI inference APIs.
+
+\subsection{Limitations}
+
+\begin{itemize}
+    \item \textbf{Word Document Support:} The platform currently accepts \texttt{.docx} files for upload but does not have a parser for extracting text from them. This feature is marked as ``Under Development''.
+    \item \textbf{No Real-Time Collaboration:} Each user's library is private. There is no sharing or collaborative editing capability in this version.
+    \item \textbf{AI Response Consistency:} Since responses come from external APIs, the quality and format of outputs can occasionally vary, particularly with smaller open-source models. The JSON recovery logic in \texttt{common.js} mitigates this to a significant extent.
+\end{itemize}
+
+\subsection{Future Work}
+
+\begin{itemize}
+    \item \textbf{Word Document Parsing:} Installing and integrating the \texttt{mammoth} library to extract text from \texttt{.docx} files, completing the document support matrix.
+    \item \textbf{Voice Input:} Adding a speech-to-text option on text input fields, allowing users to speak their study material directly rather than typing or uploading files.
+    \item \textbf{Shared Study Sets:} Implementing a sharing mechanism so users can share generated flashcard sets or quiz banks with classmates via a public link.
+    \item \textbf{Gamification Elements:} Adding streaks, progress tracking, and spaced-repetition scheduling to the flashcard system to improve long-term retention.
+    \item \textbf{Larger Dataset Support:} Optimising the Python EDA pipeline to handle larger CSV files (beyond 100k rows) through chunked processing and streaming.
+\end{itemize}
+
+\clearpage
+
+% ---------- Bibliography ----------
+\section{Bibliography}
+
+\begin{enumerate}
+    \item \textbf{React Documentation} --- Official guide for React 19, Hooks, and Component Architecture. \url{https://react.dev/}
+
+    \item \textbf{Express.js Documentation} --- Express 5.1 framework reference and routing API. \url{https://expressjs.com/}
+
+    \item \textbf{MongoDB Atlas Documentation} --- Cloud database configuration, indexing, and monitoring. \url{https://www.mongodb.com/docs/atlas/}
+
+    \item \textbf{OpenAI API Reference} --- Chat Completions API, model specifications, and token management. \url{https://platform.openai.com/docs/}
+
+    % \item \textbf{Google Gemini API Documentation} --- Gemini 2.5 Flash and Pro model capabilities and usage. \url{https://ai.google.dev/}
+
+    \item \textbf{Hugging Face Inference API} --- Router-based model inference for open-source models (Llama, Qwen, Mixtral). \url{https://huggingface.co/docs/api-inference/}
+
+    \item \textbf{Pandas Documentation} --- DataFrame operations and statistical analysis functions. \url{https://pandas.pydata.org/docs/}
+
+    \item \textbf{Cloudinary Documentation} --- File management, transformation, and storage APIs. \url{https://cloudinary.com/documentation}
+
+    \item \textbf{Recharts Documentation} --- React charting library built on D3. \url{https://recharts.org/}
+
+    \item \textbf{Framer Motion Documentation} --- Animation library for React applications. \url{https://www.framer.com/motion/}
+\end{enumerate}
+
+\end{document}

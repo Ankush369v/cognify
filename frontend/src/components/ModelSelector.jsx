@@ -8,7 +8,7 @@ const ModelSelector = ({ selectedModel, onModelChange, activeTool }) => {
     // Filter models based on the active tool
     const availableModels = activeTool === 'code-tools'
         ? allModels.filter(m => m.category === 'code' || m.category === 'premium')
-        : activeTool === 'analysis'
+        : activeTool === 'visualize'
             ? allModels.filter(m => m.category === 'data' || m.category === 'general' || m.category === 'premium')
             : allModels.filter(m => m.category === 'general' || m.category === 'premium');
 

@@ -46,9 +46,9 @@ const UserGuide = () => (
         className="glass-panel p-5 md:p-16 rounded-3xl md:rounded-[2.5rem] border border-white/5 space-y-12"
     >
         <UserGuideSection id="getting-started" icon={Zap} title="Getting Started: Your First 5 Minutes">
-            <p className="mb-4">
-                Welcome to Cognify AI—the platform that turns hours of manual study work into minutes. Whether you're a student prepping for exams,
-                a developer debugging complex code, or a professional analyzing business data, this guide will help you master the platform quickly.
+            <p className="mb-4 text-justify">
+                Welcome to <strong className="text-indigo-400 uppercase">Cognify</strong>—the platform designed for <span className="italic">Intelligence Amplified</span>. 
+                Cognify is a comprehensive full-stack ecosystem that unifies AI-powered content generation, interactive data visualization, and automated study tools into a single cloud-synchronized platform, eliminating the need to switch between multiple applications for learning and productivity.
             </p>
             <div className="grid md:grid-cols-3 gap-4 mt-6 mb-6">
                 <div className="p-4 rounded-2xl bg-white/5 border border-white/5">
@@ -87,18 +87,20 @@ const UserGuide = () => (
                         <p className="text-xs opacity-80">Best for: Textbooks, research papers, legal documents. Our OCR handles scanned PDFs, but native digital PDFs yield better accuracy.</p>
                     </div>
                 </div>
-                <div className="flex items-start gap-3 p-3 rounded-xl hover:bg-white/5 transition-colors">
-                    <ChevronRight className="w-4 h-4 text-indigo-500 mt-1 flex-shrink-0" />
+                <div className="flex items-start gap-3 p-3 rounded-xl hover:bg-white/5 transition-colors opacity-50 grayscale">
+                    <div className="p-1 bg-white/5 rounded-lg mt-1">
+                        <ChevronRight className="w-4 h-4 text-slate-500 flex-shrink-0" />
+                    </div>
                     <div>
-                        <h4 className="text-white font-semibold text-sm">Microsoft Word (.docx)</h4>
-                        <p className="text-xs opacity-80">Best for: Essays, reports, structured notes. Formatting (headings, bullet points) improves AI context understanding.</p>
+                        <h4 className="text-slate-400 font-semibold text-sm">Microsoft Word (.docx)</h4>
+                        <p className="text-[10px] text-indigo-400 font-bold uppercase tracking-widest mt-1">Under Development</p>
                     </div>
                 </div>
                 <div className="flex items-start gap-3 p-3 rounded-xl hover:bg-white/5 transition-colors">
                     <ChevronRight className="w-4 h-4 text-indigo-500 mt-1 flex-shrink-0" />
                     <div>
-                        <h4 className="text-white font-semibold text-sm">Excel & CSV (.xlsx, .csv)</h4>
-                        <p className="text-xs opacity-80">Best for: Data analysis and visualization. Ensure your data has clear column headers for optimal trend detection.</p>
+                        <h4 className="text-white font-semibold text-sm">Excel & CSV (.xlsx, .xls, .csv)</h4>
+                        <p className="text-xs opacity-80">Best for: Data analysis and visualization. Our Python EDA engine handles multi-sheet workbooks and localized delimiters automatically.</p>
                     </div>
                 </div>
                 <div className="flex items-start gap-3 p-3 rounded-xl hover:bg-white/5 transition-colors">
@@ -123,36 +125,46 @@ const UserGuide = () => (
 
         <UserGuideSection id="ai-models" icon={Cpu} title="Understanding AI Models: When to Use What">
             <p className="mb-4">
-                Cognify integrates multiple AI models, each with different strengths. Choosing the right model directly impacts output quality, speed, and cost-effectiveness.
+                Cognify integrates multiple state-of-the-art AI models. Each model category is optimized for specific tasks like logic, coding, or rapid response.
             </p>
             <div className="space-y-6">
                 <div className="flex gap-4 items-start p-4 rounded-2xl bg-teal-500/5 border border-teal-500/10">
-                    <div className="p-2 rounded-lg bg-teal-500/10 text-teal-400 font-bold text-xs self-start">FAST</div>
+                    <div className="p-2 rounded-lg bg-teal-500/10 text-teal-400 font-bold text-xs self-start">GENERAL</div>
                     <div className="flex-1">
-                        <h4 className="text-white font-bold mb-2">Llama 3.1 / Qwen 2.5 Coder</h4>
-                        <p className="text-sm mb-3">Open-source models optimized for speed and cost. Perfect for everyday tasks where sub-second latency matters.</p>
+                        <h4 className="text-white font-bold mb-2">Meta Llama 3.1 / 3.2 & Qwen 2.5</h4>
+                        <p className="text-sm mb-3">Versatile open-source models. Llama 3.1/3.2 provides superior academic logic, while Qwen 2.5 excels at deductive reasoning and step-by-step math problems.</p>
                         <div className="text-xs space-y-1 opacity-80">
-                            <p><strong className="text-teal-400">Best For:</strong> Quick summaries, straightforward MCQs, basic code explanations, routine data analysis.</p>
-                            <p><strong className="text-teal-400">Speed:</strong> 2-5 seconds for most tasks.</p>
-                            <p><strong className="text-teal-400">Cost:</strong> Most economical option.</p>
+                            <p><strong className="text-teal-400">Best For:</strong> MCQ Generation, Deep Summaries, Logical Proofs, Rapid Flashcards (Lite mode).</p>
+                            <p><strong className="text-teal-400">Performance:</strong> High reliability for structured data and pedagogical explanations.</p>
+                            <p><strong className="text-teal-400">Model Variants:</strong> 8B (Full Power), 3B (Data Analyst), 1B (Ultra-Fast).</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="flex gap-4 items-start p-4 rounded-2xl bg-pink-500/5 border border-pink-500/10">
+                    <div className="p-2 rounded-lg bg-pink-500/10 text-pink-400 font-bold text-xs self-start">CODER</div>
+                    <div className="flex-1">
+                        <h4 className="text-white font-bold mb-2">Qwen 2.5 Coder 7B</h4>
+                        <p className="text-sm mb-3">Specialized engine for development. Trained on trillions of tokens of code to understand complex syntax and security patterns.</p>
+                        <div className="text-xs space-y-1 opacity-80">
+                            <p><strong className="text-pink-400">Best For:</strong> Code Explanation, Security Audits, Refactoring, Database Schema Design.</p>
+                            <p><strong className="text-pink-400">Expertise:</strong> Processes over 30+ programming languages with high architectural precision.</p>
                         </div>
                     </div>
                 </div>
                 <div className="flex gap-4 items-start p-4 rounded-2xl bg-purple-500/5 border border-purple-500/10">
                     <div className="p-2 rounded-lg bg-purple-500/10 text-purple-400 font-bold text-xs self-start">PREMIUM</div>
                     <div className="flex-1">
-                        <h4 className="text-white font-bold mb-2">GPT-4o / o1-mini (OpenAI)</h4>
-                        <p className="text-sm mb-3">State-of-the-art reasoning models with superior accuracy and nuance. Use when quality cannot be compromised.</p>
+                        <h4 className="text-white font-bold mb-2">OpenAI GPT-4o / GPT-4o Mini</h4>
+                        <p className="text-sm mb-3">State-of-the-art reasoning models with superior nuance. Use when absolute accuracy and complex instruction following are required.</p>
                         <div className="text-xs space-y-1 opacity-80">
-                            <p><strong className="text-purple-400">Best For:</strong> Deep security audits, academic research summaries, complex analytical reports, Bloom's Taxonomy-aligned assessments.</p>
-                            <p><strong className="text-purple-400">Speed:</strong> 8-15 seconds for complex tasks.</p>
-                            <p><strong className="text-purple-400">Output Quality:</strong> Highest fidelity, minimal hallucination.</p>
+                            <p><strong className="text-purple-400">Best For:</strong> Advanced Research summaries, Flawless High-Stakes MCQs, Sensitive Data Analysis.</p>
+                            <p><strong className="text-purple-400">Output Quality:</strong> Highest fidelity across all benchmarks with minimal hallucination.</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div className="mt-6 p-4 rounded-xl bg-indigo-500/5 border border-indigo-500/10">
-                <p className="text-sm"><strong className="text-white">Smart Strategy:</strong> Use Fast models for first drafts and iteration. Switch to Premium when you need publication-ready or decision-critical outputs.</p>
+                <p className="text-sm"><strong className="text-white">Smart Selection:</strong> Our system intelligently defaults to the most efficient model for your chosen tool, but you can override this in the AI Studio settings.</p>
             </div>
         </UserGuideSection>
 
@@ -225,16 +237,16 @@ const UserGuide = () => (
                     </div>
                 </div>
 
-                {/* Data Analysis */}
+                {/* Data Visualizer */}
                 <div className="border-l-4 border-teal-500 pl-6 py-2">
-                    <h4 className="text-white font-bold mb-2 text-lg">Data Analyst</h4>
-                    <p className="text-sm mb-3">Upload CSV/Excel files to detect trends, outliers, and hidden correlations using statistical rigor.</p>
+                    <h4 className="text-white font-bold mb-2 text-lg">Data Visualizer</h4>
+                    <p className="text-sm mb-3">Transform raw datasets into stunning, interactive PowerBI-style dashboards with AI-powered trend analysis.</p>
                     <div className="space-y-2 text-sm">
-                        <p><strong className="text-teal-400">Best Practices:</strong></p>
+                        <p><strong className="text-teal-400">Dashbaord Features:</strong></p>
                         <ul className="list-disc pl-5 space-y-1 opacity-80">
-                            <li>Ensure your CSV has clear column headers in Row 1.</li>
-                            <li>Remove merged cells and complex formatting for optimal parsing.</li>
-                            <li><strong>Report Depth:</strong> "Standard" for quick insights. "Deep Statistical Audit" for variance analysis and multi-variate regressions.</li>
+                            <li><strong>Dynamic Charting:</strong> Automatically select the best chart type for your data.</li>
+                            <li><strong>AI Narrative:</strong> Get contextual explanations and insights for every visual.</li>
+                            <li><strong>Multi-Theme Support:</strong> Toggle between Modern Dark, Neon, and Corporate themes.</li>
                         </ul>
                     </div>
                 </div>
@@ -364,10 +376,10 @@ const TechnicalDocumentation = () => (
                 <div className="space-y-6 text-slate-400 leading-relaxed">
                     <p>
                         Cognify AI employs a Microservices-inspired Monolithic architecture designed for low-latency inference and high scalability.
-                        The core orchestration layer acts as an intelligent traffic controller, routing user requests to the most appropriate AI inference engine based on task complexity, cost, and speed requirements.
+                        The Core Engine orchestrates data flow using <strong className="text-white font-mono text-sm">Node.js (v20+)</strong> and <strong className="text-white font-mono text-sm">Express</strong>, while specialized tasks are delegated to a dedicated <strong className="text-indigo-400 font-mono text-sm">Python Analytics Engine</strong>.
                     </p>
                     <p>
-                        Our backend is built on a robust Node.js/Express environment, utilizing asynchronous concurrent processing to handle heavy file uploads and real-time streaming responses simultaneously.
+                        The frontend is built on <strong className="text-white font-mono text-sm">React 19</strong>, utilizing concurrent rendering and Framer Motion for a premium, responsive user experience. All session data is persisted via <strong className="text-white font-mono text-sm">MongoDB Atlas</strong>.
                     </p>
                 </div>
                 <div className="glass-panel p-6 rounded-2xl border border-white/10 bg-slate-900/50 relative overflow-hidden">
@@ -389,7 +401,11 @@ const TechnicalDocumentation = () => (
                             </div>
                             <div className="flex items-center gap-2">
                                 <span className="w-2 h-2 rounded-full bg-slate-500" />
-                                <span>Model Router (GPT-4o / Llama3 / Qwen)</span>
+                                <span>Model Router (GPT-4o / Llama 3.2 / Qwen)</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <span className="w-2 h-2 rounded-full bg-slate-500" />
+                                <span className="text-teal-400">Python EDA Engine</span>
                             </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -499,6 +515,35 @@ const TechnicalDocumentation = () => (
                 </div>
             </div>
         </section>
+
+        {/* Academic Credits Section */}
+        <section id="credits" className="pt-20 border-t border-white/5 scroll-mt-32">
+            <div className="flex items-center gap-3 mb-10">
+                <Book className="w-6 h-6 text-indigo-400" />
+                <h2 className="text-3xl font-bold text-white font-outfit">Academic Credits</h2>
+            </div>
+            <div className="flex flex-wrap gap-6">
+                <div className="flex-1 min-w-[300px] p-8 rounded-3xl bg-white/5 border border-white/10 relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:rotate-12 transition-transform">
+                        <Code2 className="w-16 h-16" />
+                    </div>
+                    <p className="text-xs font-bold text-indigo-400 uppercase tracking-[0.3em] mb-3">Lead Developer</p>
+                    <h3 className="text-2xl font-black text-white mb-2 tracking-tight">Ankush Verma</h3>
+                    <p className="text-sm text-slate-400 font-mono">ID: 23FE10CSE00100</p>
+                </div>
+                <div className="flex-1 min-w-[300px] p-8 rounded-3xl bg-white/5 border border-white/10 relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:-rotate-12 transition-transform">
+                        <Cpu className="w-16 h-16" />
+                    </div>
+                    <p className="text-xs font-bold text-indigo-400 uppercase tracking-[0.3em] mb-3">Project Guide</p>
+                    <h3 className="text-2xl font-black text-white mb-2 tracking-tight">Dr. Tapan Kumar Dey</h3>
+                    <p className="text-sm text-slate-400">Dept. of Computer Science & Engineering</p>
+                </div>
+            </div>
+            <div className="mt-8 text-center text-xs text-slate-600 font-bold uppercase tracking-widest">
+                Manipal University Jaipur • Problem Based Learning 2026
+            </div>
+        </section>
     </motion.div>
 );
 
@@ -527,11 +572,11 @@ const Documentation = () => {
             sectionId: 'file-formats'
         },
 
-        // File Formats - Word
+        // File Formats - Word (Coming Soon)
         {
-            title: 'Microsoft Word',
+            title: 'Word Documents',
             section: 'File Formats',
-            keywords: 'docx word microsoft essay report notes document upload file writing assignment paper structured formatting what files',
+            keywords: 'docx word microsoft essay support coming soon future update',
             tab: 'guide',
             sectionId: 'file-formats'
         },
@@ -599,11 +644,11 @@ const Documentation = () => {
             sectionId: 'tools'
         },
 
-        // Tools - Data Analyst
+        // Tools - Data Visualizer
         {
-            title: 'Data Analyst',
+            title: 'Data Visualizer',
             section: 'Tools',
-            keywords: 'data analysis analyze data trends patterns insights statistics csv excel spreadsheet numbers metrics visualize graph chart understand data find insights correlation regression outliers anomalies what does my data mean',
+            keywords: 'data visualization visualize data dashboards charts graphs trends patterns insights powerbi csv excel spreadsheet numbers metrics understand data find insights visualize datasets dashboarding table analytics eda python',
             tab: 'guide',
             sectionId: 'tools'
         },
@@ -779,7 +824,7 @@ const Documentation = () => {
                                     <Search className="w-5 h-5 text-slate-400" />
                                     <input
                                         type="text"
-                                        placeholder="Search anything... Try 'analyze data' or 'generate mcqs' ✨"
+                                        placeholder="Search anything... Try 'Llama 3.2' or 'code review' ✨"
                                         value={searchQuery}
                                         onChange={(e) => setSearchQuery(e.target.value)}
                                         autoFocus
@@ -800,7 +845,7 @@ const Documentation = () => {
                                             <p className="text-sm mb-2">Type what you want to do in plain language...</p>
                                             <p className="text-xs opacity-70 mb-4">Examples: "study better", "fix my code", "is my data safe?"</p>
                                             <div className="mt-4 flex flex-wrap justify-center gap-2">
-                                                {['generate mcqs', 'analyze data', 'study cards', 'fix bugs', 'privacy'].map(tag => (
+                                                {['generate mcqs', 'visualize data', 'study cards', 'fix bugs', 'privacy'].map(tag => (
                                                     <button
                                                         key={tag}
                                                         onClick={() => setSearchQuery(tag)}

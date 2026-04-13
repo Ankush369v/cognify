@@ -30,7 +30,7 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* TIMER UI - FIXED CONTRAST */
+        /* TIMER UI */
         #timerContainer {
             background: #ffffff;
             color: #020617;
@@ -40,15 +40,8 @@
         }
 
         @keyframes flicker {
-
-            0%,
-            100% {
-                background-color: #ffffff;
-            }
-
-            50% {
-                background-color: #fca5a5;
-            }
+            0%, 100% { background-color: #ffffff; }
+            50% { background-color: #fca5a5; }
         }
 
         .timer-warning {
@@ -63,17 +56,31 @@
             border: 3px solid #f87171 !important;
             animation: none;
         }
+
+        .tool-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            border: 1px solid;
+        }
     </style>
 </head>
 
 <body onload="startTimer()">
 
+    <!-- TIMER -->
     <div id="timerContainer"
         class="fixed bottom-10 right-10 px-8 py-4 rounded-3xl flex items-center gap-4 transition-all">
         <i class="fas fa-hourglass-start text-blue-600 text-2xl" id="timerIcon"></i>
         <span id="displayTime" class="text-4xl font-black font-mono tracking-tighter">00:00</span>
     </div>
 
+    <!-- NAVBAR -->
     <nav class="fixed w-full z-50 glass border-b border-slate-800/50 px-8 py-4 flex justify-between items-center">
         <div class="flex items-center gap-4">
             <div class="bg-white p-1 rounded flex items-center justify-center shadow-md"
@@ -84,79 +91,136 @@
                 <span class="text-xl font-black text-white leading-none uppercase tracking-tighter">PBL <span
                         class="text-blue-500 italic">2026</span></span>
                 <span class="text-[9px] text-slate-400 font-bold uppercase tracking-widest mt-1">Dept. of Computer
-                    Science & Engineering</span>
+                    Science &amp; Engineering</span>
             </div>
         </div>
         <div class="hidden md:flex gap-8 text-[11px] uppercase tracking-widest font-bold opacity-70">
             <a href="#problem" class="hover:text-blue-400 transition">Problem</a>
-            <a href="#methodology" class="hover:text-blue-400 transition">Methodology</a>
-            <a href="#results" class="hover:text-blue-400 transition">Results</a>
+            <a href="#tools" class="hover:text-blue-400 transition">Tools</a>
+            <a href="#methodology" class="hover:text-blue-400 transition">Pipeline</a>
+            <a href="#results" class="hover:text-blue-400 transition">Features</a>
             <a href="#team" class="hover:text-blue-400 transition">Team</a>
         </div>
     </nav>
 
     <main class="max-w-6xl mx-auto px-6 pt-48 pb-32 space-y-32">
 
+        <!-- HERO -->
         <section class="text-center">
             <div
                 class="inline-block px-4 py-1 border border-slate-800 rounded-full text-slate-500 text-[10px] font-mono mb-6 uppercase tracking-widest">
-                ID: 23FE10CSE00100</div>
+                ID: 23FE10CSE00100 &nbsp;|&nbsp; PBL-4 End Term &nbsp;|&nbsp; Jan–May 2026</div>
             <h1 class="text-6xl md:text-7xl font-extrabold mb-8 uppercase leading-tight"><span
                     class="gradient-text uppercase">Cognify</span> <span
                     class="text-white block text-4xl mt-2">Intelligent Amplified</span></h1>
             <p
                 class="text-slate-400 max-w-2xl mx-auto italic text-lg leading-relaxed border-l-2 border-blue-500/30 pl-6 text-left">
-                <strong class="text-blue-400">Project Statement:</strong> Cognify is a comprehensive full-stack web
-                application that unifies AI-powered content generation, automated data analytics, and interactive study
-                tools into a single cloud-synchronized platform, eliminating the need to switch between multiple
-                applications for learning and productivity.
+                <strong class="text-blue-400">Project Statement:</strong> Cognify is a full-stack, AI-powered learning
+                platform that transforms raw study materials, code, and datasets into structured, actionable content
+                — eliminating the need to switch between multiple tools for learning and productivity.
             </p>
         </section>
 
+        <!-- PROBLEM STATEMENT -->
         <section id="problem" class="grid md:grid-cols-2 gap-12 items-stretch">
             <div class="glass p-10 rounded-[2.5rem] flex flex-col justify-center border-l-4 border-blue-600">
                 <h2 class="text-3xl font-extrabold mb-6 text-blue-400">Problem Statement</h2>
                 <p class="text-slate-300 leading-relaxed text-justify mb-4">
                     Modern students face unprecedented <strong class="text-white">information overload</strong> and are
-                    forced to juggle 4-5 disparate tools for studying, content generation, code analysis, and data
+                    forced to juggle multiple separate tools for studying, content generation, code analysis, and data
                     visualization.
                 </p>
                 <p class="text-slate-400 leading-relaxed text-justify text-sm">
                     Creating flashcards manually, generating quizzes from PDFs, analyzing datasets, and reviewing code
-                    requires switching between multiple platforms—resulting in <span
+                    requires switching between multiple platforms — resulting in <span
                         class="text-red-400 font-bold">productivity loss, cognitive fatigue, and poor knowledge
                         retention</span>.
                 </p>
             </div>
             <div class="space-y-6">
                 <div class="glass p-7 rounded-3xl border-r-4 border-blue-500/50">
-                    <h3 class="text-blue-400 font-bold text-xs uppercase tracking-widest mb-2">Existing Solutions
-                        Analysis</h3>
+                    <h3 class="text-blue-400 font-bold text-xs uppercase tracking-widest mb-2">Existing Solutions &
+                        Their Gaps</h3>
                     <p class="text-sm text-slate-400 leading-relaxed">
                         <strong class="text-slate-300">Quizlet:</strong> Manual flashcard creation, no AI generation<br>
-                        <strong class="text-slate-300">ChatGPT:</strong> Generic responses, no file/data processing<br>
-                        <strong class="text-slate-300">Tableau/Excel:</strong> Complex UX, no AI insights<br>
-                        <strong class="text-red-400">Gap:</strong> No unified platform for AI + Analytics + Study Tools
+                        <strong class="text-slate-300">ChatGPT:</strong> Generic responses, no persistent library<br>
+                        <strong class="text-slate-300">Tableau/Excel:</strong> Complex UX, no AI-driven insights<br>
+                        <strong class="text-red-400">Gap:</strong> No unified platform combining AI generation + EDA + Study Tools
                     </p>
                 </div>
                 <div class="glass p-7 rounded-3xl border-r-4 border-purple-500/50">
-                    <h3 class="text-purple-400 font-bold text-xs uppercase tracking-widest mb-2">Our Innovation</h3>
+                    <h3 class="text-purple-400 font-bold text-xs uppercase tracking-widest mb-2">Our Solution</h3>
                     <p class="text-sm text-slate-300 leading-relaxed">
-                        <strong class="text-purple-300">Multi-Model AI Integration:</strong> GPT-4 + Hugging Face models
-                        provide diverse AI capabilities<br>
-                        <strong class="text-purple-300">Unified Dashboard:</strong> Study tools + Code analysis + Data
-                        visualization in single interface<br>
-                        <strong class="text-purple-300">Cloud-Synced Storage:</strong> MongoDB Atlas enables
-                        cross-device access<br>
-                        <strong class="text-green-400">Tech Stack:</strong> React 19 + Node.js + Express + Python
-                        Analytics Engine
+                        <strong class="text-purple-300">Multi-Model AI:</strong> OpenAI (GPT-4o) + Hugging Face (Llama, Qwen) routing<br>
+                        <strong class="text-purple-300">5 Unified Tools:</strong> MCQs, Flashcards, Summaries, Code Tools, Data Visualizer<br>
+                        <strong class="text-purple-300">Python EDA Engine:</strong> Automated statistical analysis with Pandas & SciPy<br>
+                        <strong class="text-green-400">Stack:</strong> React 19 + Node.js 22 + Express 5.1 + MongoDB Atlas
                     </p>
                 </div>
             </div>
         </section>
 
+        <!-- TOOLS SECTION -->
+        <section id="tools">
+            <h2 class="text-5xl font-black text-center uppercase tracking-tight mb-16">The <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">5 Tools</span>
+            </h2>
+            <div class="grid md:grid-cols-5 gap-4">
+                <!-- MCQ -->
+                <div class="glass p-6 rounded-3xl border-t-2 border-blue-500 flex flex-col items-center text-center gap-3 hover:scale-105 transition-transform">
+                    <div class="text-4xl">📝</div>
+                    <h3 class="font-extrabold text-blue-400 text-sm uppercase tracking-wider">MCQ Generator</h3>
+                    <p class="text-slate-500 text-xs leading-relaxed">Generates configurable multiple-choice questions from PDFs, TXT, or typed text. Supports difficulty, tone, Bloom's level.</p>
+                    <div class="flex flex-wrap gap-1 justify-center mt-auto">
+                        <span class="tool-chip border-blue-500/30 text-blue-400 bg-blue-500/10">PDF</span>
+                        <span class="tool-chip border-blue-500/30 text-blue-400 bg-blue-500/10">TXT</span>
+                    </div>
+                </div>
+                <!-- Flashcards -->
+                <div class="glass p-6 rounded-3xl border-t-2 border-purple-500 flex flex-col items-center text-center gap-3 hover:scale-105 transition-transform">
+                    <div class="text-4xl">🃏</div>
+                    <h3 class="font-extrabold text-purple-400 text-sm uppercase tracking-wider">Flashcards</h3>
+                    <p class="text-slate-500 text-xs leading-relaxed">Interactive flip cards generated from documents. Supports question-style or term-style fronts with adjustable detail levels.</p>
+                    <div class="flex flex-wrap gap-1 justify-center mt-auto">
+                        <span class="tool-chip border-purple-500/30 text-purple-400 bg-purple-500/10">PDF</span>
+                        <span class="tool-chip border-purple-500/30 text-purple-400 bg-purple-500/10">TXT</span>
+                    </div>
+                </div>
+                <!-- Summarizer -->
+                <div class="glass p-6 rounded-3xl border-t-2 border-cyan-500 flex flex-col items-center text-center gap-3 hover:scale-105 transition-transform">
+                    <div class="text-4xl">📄</div>
+                    <h3 class="font-extrabold text-cyan-400 text-sm uppercase tracking-wider">AI Summarizer</h3>
+                    <p class="text-slate-500 text-xs leading-relaxed">Produces bullet-point, paragraph, or executive summaries with configurable tone (simple, academic, professional).</p>
+                    <div class="flex flex-wrap gap-1 justify-center mt-auto">
+                        <span class="tool-chip border-cyan-500/30 text-cyan-400 bg-cyan-500/10">PDF</span>
+                        <span class="tool-chip border-cyan-500/30 text-cyan-400 bg-cyan-500/10">TXT</span>
+                    </div>
+                </div>
+                <!-- Code Tools -->
+                <div class="glass p-6 rounded-3xl border-t-2 border-yellow-500 flex flex-col items-center text-center gap-3 hover:scale-105 transition-transform">
+                    <div class="text-4xl">💻</div>
+                    <h3 class="font-extrabold text-yellow-400 text-sm uppercase tracking-wider">Code Tools</h3>
+                    <p class="text-slate-500 text-xs leading-relaxed">Two modes: Explain (line-by-line breakdown) and Review (critique + suggestions). Supports pasted code or file upload.</p>
+                    <div class="flex flex-wrap gap-1 justify-center mt-auto">
+                        <span class="tool-chip border-yellow-500/30 text-yellow-400 bg-yellow-500/10">Explain</span>
+                        <span class="tool-chip border-yellow-500/30 text-yellow-400 bg-yellow-500/10">Review</span>
+                    </div>
+                </div>
+                <!-- Data Visualizer -->
+                <div class="glass p-6 rounded-3xl border-t-2 border-green-500 flex flex-col items-center text-center gap-3 hover:scale-105 transition-transform">
+                    <div class="text-4xl">📊</div>
+                    <h3 class="font-extrabold text-green-400 text-sm uppercase tracking-wider">Data Visualizer</h3>
+                    <p class="text-slate-500 text-xs leading-relaxed">Automated EDA via Python (Pandas, SciPy). Produces interactive Recharts visualizations + AI-generated insights.</p>
+                    <div class="flex flex-wrap gap-1 justify-center mt-auto">
+                        <span class="tool-chip border-green-500/30 text-green-400 bg-green-500/10">CSV</span>
+                        <span class="tool-chip border-green-500/30 text-green-400 bg-green-500/10">Excel</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SYSTEM PIPELINE -->
         <section id="methodology" class="space-y-16 relative">
-            <!-- Connecting Line Background -->
             <div
                 class="absolute left-1/2 top-20 bottom-20 w-1 bg-gradient-to-b from-blue-500/0 via-blue-500/50 to-purple-500/0 -translate-x-1/2 hidden md:block">
             </div>
@@ -165,82 +229,75 @@
                     class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Pipeline</span>
             </h2>
 
-            <!-- Step 1: Input -->
+            <!-- Step 1 -->
             <div class="relative z-10 grid md:grid-cols-2 gap-8 items-center">
                 <div class="md:text-right">
-                    <h3 class="text-2xl font-bold text-blue-400 mb-2">1. Data Ingestion</h3>
-                    <p class="text-slate-400 text-sm">Users upload raw study materials. The system accepts diverse
-                        formats including PDFs, code files, and structured datasets.</p>
+                    <h3 class="text-2xl font-bold text-blue-400 mb-2">1. File Ingestion &amp; Upload</h3>
+                    <p class="text-slate-400 text-sm">Users upload study materials via multipart form. Multer validates and streams files to Cloudinary as raw (CSV/code) or auto (PDF) resource types to prevent data corruption.</p>
                 </div>
                 <div class="order-first md:order-none flex justify-center md:justify-start">
                     <div class="relative group">
-                        <div
-                            class="absolute inset-0 bg-blue-500/20 blur-xl rounded-full group-hover:bg-blue-500/30 transition-all duration-500">
-                        </div>
-                        <div
-                            class="glass p-6 rounded-2xl border-2 border-blue-500/30 bg-slate-900/80 relative flex gap-4 items-center transform group-hover:scale-105 transition-transform">
+                        <div class="absolute inset-0 bg-blue-500/20 blur-xl rounded-full group-hover:bg-blue-500/30 transition-all duration-500"></div>
+                        <div class="glass p-6 rounded-2xl border-2 border-blue-500/30 bg-slate-900/80 relative flex gap-4 items-center transform group-hover:scale-105 transition-transform">
                             <i class="fas fa-file-pdf text-red-400 text-2xl"></i>
                             <i class="fas fa-file-code text-yellow-400 text-2xl"></i>
                             <i class="fas fa-table text-green-400 text-2xl"></i>
                             <div class="h-8 w-[1px] bg-slate-700"></div>
                             <i class="fas fa-cloud-upload-alt text-blue-400 text-2xl animate-bounce"></i>
+                            <span class="text-xs text-slate-500 font-mono">Cloudinary</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Step 2: Processing -->
+            <!-- Step 2 -->
             <div class="relative z-10 grid md:grid-cols-2 gap-8 items-center">
                 <div class="md:col-start-2">
-                    <h3 class="text-2xl font-bold text-purple-400 mb-2">2. Intelligent Processing</h3>
-                    <p class="text-slate-400 text-sm">The core engine orchestrates data flow. Node.js handles API
-                        requests while Python scripts perform deep data analysis (EDA).</p>
+                    <h3 class="text-2xl font-bold text-purple-400 mb-2">2. Feature Service Processing</h3>
+                    <p class="text-slate-400 text-sm">The JWT-authenticated request reaches the relevant service module. For documents: pdf-parse extracts text. For datasets: the xlsx library parses rows, then a Python subprocess runs eda_engine.py (Pandas, NumPy, SciPy) for statistical computation.</p>
                 </div>
                 <div class="row-start-1 md:row-start-auto flex justify-center md:justify-end">
                     <div class="relative group">
-                        <div
-                            class="absolute inset-0 bg-purple-500/20 blur-xl rounded-full group-hover:bg-purple-500/30 transition-all duration-500">
-                        </div>
-                        <div
-                            class="glass p-6 rounded-2xl border-2 border-purple-500/30 bg-slate-900/80 relative flex gap-6 items-center transform group-hover:scale-105 transition-transform">
+                        <div class="absolute inset-0 bg-purple-500/20 blur-xl rounded-full group-hover:bg-purple-500/30 transition-all duration-500"></div>
+                        <div class="glass p-6 rounded-2xl border-2 border-purple-500/30 bg-slate-900/80 relative flex gap-6 items-center transform group-hover:scale-105 transition-transform">
                             <div class="text-center">
                                 <i class="fab fa-node text-green-500 text-3xl mb-1"></i>
-                                <span class="text-[10px] font-mono block text-slate-500">API</span>
+                                <span class="text-[10px] font-mono block text-slate-500">Node.js 22</span>
                             </div>
-                            <i class="fas fa-cogs text-slate-600 text-xl animate-spin-slow"></i>
+                            <i class="fas fa-cogs text-slate-600 text-xl"></i>
                             <div class="text-center">
                                 <i class="fab fa-python text-yellow-500 text-3xl mb-1"></i>
-                                <span class="text-[10px] font-mono block text-slate-500">EDA</span>
+                                <span class="text-[10px] font-mono block text-slate-500">EDA Engine</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Step 3: AI Inference -->
+            <!-- Step 3 -->
             <div class="relative z-10 grid md:grid-cols-2 gap-8 items-center">
                 <div class="md:text-right">
-                    <h3 class="text-2xl font-bold text-indigo-400 mb-2">3. Multi-Model AI Layer</h3>
-                    <p class="text-slate-400 text-sm">Requests are routed to the best-fit model. GPT-4 handles complex
-                        reasoning, while Hugging Face models power specialized tasks.</p>
+                    <h3 class="text-2xl font-bold text-indigo-400 mb-2">3. Multi-Model AI Routing</h3>
+                    <p class="text-slate-400 text-sm">A unified routing layer maps the user's selected model to the correct provider at runtime. GPT-prefixed models → OpenAI. All others (Llama, Qwen) → Hugging Face Router. Adding a new model requires only one config line.</p>
                 </div>
                 <div class="order-first md:order-none flex justify-center md:justify-start">
                     <div class="relative group">
-                        <div
-                            class="absolute inset-0 bg-indigo-500/20 blur-xl rounded-full group-hover:bg-indigo-500/30 transition-all duration-500">
-                        </div>
-                        <div
-                            class="glass p-1 rounded-2xl border-2 border-indigo-500/30 bg-slate-900/80 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-indigo-500/20 blur-xl rounded-full group-hover:bg-indigo-500/30 transition-all duration-500"></div>
+                        <div class="glass p-1 rounded-2xl border-2 border-indigo-500/30 bg-slate-900/80 relative overflow-hidden">
                             <div class="flex">
                                 <div class="p-4 border-r border-indigo-500/20 bg-indigo-500/10">
                                     <i class="fas fa-brain text-indigo-400 text-2xl"></i>
                                 </div>
-                                <div class="p-4 flex gap-4 items-center">
-                                    <span
-                                        class="px-3 py-1 bg-green-900/30 text-green-400 text-xs font-mono rounded border border-green-500/20">GPT-4</span>
-                                    <span
-                                        class="px-3 py-1 bg-yellow-900/30 text-yellow-400 text-xs font-mono rounded border border-yellow-500/20">Hugging
-                                        Face</span>
+                                <div class="p-4 flex flex-col gap-2">
+                                    <div class="flex gap-2">
+                                        <span class="px-2 py-1 bg-green-900/30 text-green-400 text-[10px] font-mono rounded border border-green-500/20">GPT-4o</span>
+                                        <span class="px-2 py-1 bg-green-900/30 text-green-400 text-[10px] font-mono rounded border border-green-500/20">GPT-4o-mini</span>
+                                    </div>
+                                    <div class="flex gap-2 flex-wrap">
+                                        <span class="px-2 py-1 bg-yellow-900/30 text-yellow-400 text-[10px] font-mono rounded border border-yellow-500/20">Llama 3.1 8B</span>
+                                        <span class="px-2 py-1 bg-yellow-900/30 text-yellow-400 text-[10px] font-mono rounded border border-yellow-500/20">Qwen 2.5</span>
+                                        <span class="px-2 py-1 bg-yellow-900/30 text-yellow-400 text-[10px] font-mono rounded border border-yellow-500/20">Qwen Coder</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -248,17 +305,16 @@
                 </div>
             </div>
 
-            <!-- Step 4: Output -->
+            <!-- Step 4 -->
             <div class="relative z-10 grid md:grid-cols-2 gap-8 items-center">
                 <div class="md:col-start-2">
-                    <h3 class="text-2xl font-bold text-green-400 mb-2">4. Client Interaction</h3>
-                    <p class="text-slate-400 text-sm">Processed insights and generated content are delivered to the
-                        React frontend for user interaction.</p>
+                    <h3 class="text-2xl font-bold text-green-400 mb-2">4. Persist &amp; Deliver</h3>
+                    <p class="text-slate-400 text-sm">The controller saves the parsed AI response as a GeneratedContent document in MongoDB Atlas (linked to the user). The result is returned to React, which renders the appropriate component — MCQ cards, flashcard deck, summary, code review, or interactive charts.</p>
                 </div>
                 <div class="row-start-1 md:row-start-auto flex justify-center md:justify-end">
                     <div class="relative group cursor-pointer">
                         <div class="absolute inset-0 bg-green-500/30 blur-xl rounded-full animate-pulse"></div>
-                        <a href="https://cognifylearning.vercel.app" target="_blank"
+                        <a href="https://cognify-two-rouge.vercel.app" target="_blank"
                             class="glass px-8 py-4 rounded-full border-2 border-green-400 bg-green-900/20 relative flex items-center gap-3 transform hover:scale-105 transition-all shadow-[0_0_30px_rgba(74,222,128,0.2)]">
                             <span class="relative flex h-3 w-3">
                                 <span
@@ -273,60 +329,67 @@
             </div>
         </section>
 
+        <!-- KEY FEATURES / RESULTS -->
         <section id="results" class="glass p-12 rounded-[3.5rem] border-t-4 border-blue-500">
             <h2 class="text-3xl font-black mb-12 text-center uppercase tracking-tight">Project <span
                     class="text-blue-500">Key Features</span></h2>
             <div class="grid md:grid-cols-2 gap-16 items-center">
                 <div class="h-80"><canvas id="resultsChart"></canvas></div>
                 <div class="space-y-4">
-                    <div
-                        class="p-5 rounded-2xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/30 shadow-lg">
+                    <!-- Stat 1 -->
+                    <div class="p-5 rounded-2xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/30 shadow-lg">
                         <div class="flex justify-between items-center">
-                            <span class="text-slate-300 font-bold uppercase text-xs tracking-widest">AI Tools
-                                Implemented</span>
-                            <span class="text-blue-400 font-mono font-black text-3xl">8+</span>
+                            <span class="text-slate-300 font-bold uppercase text-xs tracking-widest">Learning Tools Built</span>
+                            <span class="text-blue-400 font-mono font-black text-3xl">5</span>
                         </div>
-                        <p class="text-xs text-slate-500 mt-2">Content generation features</p>
+                        <p class="text-xs text-slate-500 mt-2">MCQ Generator · Flashcards · Summarizer · Code Tools · Data Visualizer</p>
                     </div>
-                    <div
-                        class="p-5 rounded-2xl bg-gradient-to-br from-green-500/10 to-emerald-500/10 border border-green-500/30 shadow-lg">
+                    <!-- Stat 2 -->
+                    <div class="p-5 rounded-2xl bg-gradient-to-br from-green-500/10 to-emerald-500/10 border border-green-500/30 shadow-lg">
                         <div class="flex justify-between items-center">
-                            <span class="text-slate-300 font-bold uppercase text-xs tracking-widest">Content
-                                Types</span>
-                            <span class="text-green-400 font-mono font-black text-3xl">6</span>
+                            <span class="text-slate-300 font-bold uppercase text-xs tracking-widest">AI Models Available</span>
+                            <span class="text-green-400 font-mono font-black text-3xl">10+</span>
                         </div>
-                        <p class="text-xs text-slate-500 mt-2">MCQs, Flashcards, Quizzes, Summaries, Code Reviews, EDA
-                        </p>
+                        <p class="text-xs text-slate-500 mt-2">GPT-4o · GPT-4o-mini · Llama 3.1 8B · Qwen 2.5 · Qwen Coder · Llama 3.2 · and more</p>
                     </div>
-                    <div
-                        class="p-5 rounded-2xl bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/30 shadow-lg">
+                    <!-- Stat 3 -->
+                    <div class="p-5 rounded-2xl bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/30 shadow-lg">
                         <div class="flex justify-between items-center">
-                            <span class="text-slate-300 font-bold uppercase text-xs tracking-widest">Platform
-                                Type</span>
-                            <span class="text-purple-400 font-mono font-black text-2xl">All-in-One</span>
+                            <span class="text-slate-300 font-bold uppercase text-xs tracking-widest">File Formats Supported</span>
+                            <span class="text-purple-400 font-mono font-black text-2xl">4</span>
                         </div>
-                        <p class="text-xs text-slate-500 mt-2">Unified dashboard for all tasks</p>
+                        <p class="text-xs text-slate-500 mt-2">PDF · TXT · CSV · Excel (XLSX/XLS)</p>
                     </div>
-                    <!-- <p class="text-slate-400 text-sm leading-relaxed pt-4 border-t border-white/5">
-                        <strong class="text-blue-400">User Testing Results:</strong> Based on initial deployment with
-                        50+ student users, Cognify reduced content preparation time by 70%, improved quiz accuracy to
-                        94%, and eliminated the need to switch between 5 different tools.
-                    </p> -->
+                    <!-- Stat 4 -->
+                    <div class="p-5 rounded-2xl bg-gradient-to-br from-orange-500/10 to-red-500/10 border border-orange-500/30 shadow-lg">
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-300 font-bold uppercase text-xs tracking-widest">Platform Type</span>
+                            <span class="text-orange-400 font-mono font-black text-lg">Full-Stack</span>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-2">React 19 · Node.js 22 · Express 5.1 · MongoDB Atlas · Cloudinary · Python EDA</p>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- TEAM / CREDITS -->
         <section id="team" class="text-center pt-10 border-t border-slate-900">
             <h2 class="text-[10px] font-black text-slate-600 uppercase tracking-[0.5em] mb-12">Academic Credits</h2>
             <div class="flex flex-wrap justify-center gap-10">
                 <div class="glass px-12 py-8 rounded-[2rem] border-b-4 border-blue-600">
                     <p class="text-[9px] font-bold text-blue-500 mb-2 uppercase tracking-widest">Project Guide</p>
                     <p class="font-black text-xl text-slate-100">Dr. Tapan Kumar Dey</p>
+                    <p class="text-[10px] text-slate-500 mt-1">Manipal University Jaipur</p>
                 </div>
                 <div class="glass px-12 py-8 rounded-[2rem] border-b-4 border-slate-700">
                     <p class="text-[9px] font-bold text-slate-400 mb-2 uppercase tracking-widest">Lead Developer</p>
                     <p class="font-black text-xl text-slate-100">Ankush Verma</p>
-                    <p class="text-[10px] text-slate-500 mt-1">23FE10CSE00100</p>
+                    <p class="text-[10px] text-slate-500 mt-1">23FE10CSE00100 · 6th Semester · B.Tech CSE</p>
+                </div>
+                <div class="glass px-12 py-8 rounded-[2rem] border-b-4 border-slate-800">
+                    <p class="text-[9px] font-bold text-slate-600 mb-2 uppercase tracking-widest">Institution</p>
+                    <p class="font-black text-lg text-slate-300">School of CSE</p>
+                    <p class="text-[10px] text-slate-500 mt-1">Manipal University Jaipur · Jan–May 2026</p>
                 </div>
             </div>
         </section>
@@ -340,8 +403,7 @@
             <p class="text-slate-600 text-[10px] font-bold tracking-[0.3em] uppercase mb-2">Manipal University Jaipur
             </p>
             <p class="text-slate-500 text-[9px] font-medium tracking-[0.2em] uppercase opacity-50">Department of
-                Computer
-                Science & Engineering • 2026</p>
+                Computer Science &amp; Engineering • PBL-4 • 2026</p>
         </div>
     </footer>
 
@@ -356,10 +418,10 @@
                 let s = sec % 60;
                 document.getElementById('displayTime').innerText = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
 
-                if (sec >= 480 && sec < 600) { // 8-10 Mins Warning
+                if (sec >= 480 && sec < 600) {
                     document.getElementById('timerContainer').classList.add('timer-warning');
                     document.getElementById('timerIcon').classList.replace('fa-hourglass-start', 'fa-hourglass-half');
-                } else if (sec >= 600) { // 10 Mins Stop
+                } else if (sec >= 600) {
                     clearInterval(timer);
                     document.getElementById('timerContainer').classList.replace('timer-warning', 'timer-stop');
                     document.getElementById('displayTime').innerText = "10:00";
@@ -368,42 +430,53 @@
             }, 1000);
         }
 
-        // RESULTS CHART - Professional Performance Metrics
+        // CHART — Tools vs Traditional Approach
         const ctx = document.getElementById('resultsChart').getContext('2d');
         new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Traditional Approach', 'Cognify Platform'],
-                datasets: [{
-                    label: 'Workflow Efficiency',
-                    data: [40, 85],
-                    backgroundColor: ['#1e293b', '#3b82f6'],
-                    borderRadius: 15,
-                    barThickness: 60
-                }]
+                labels: ['MCQ Gen', 'Flashcards', 'Summarizer', 'Code Tools', 'Data Viz'],
+                datasets: [
+                    {
+                        label: 'Manual Effort (mins)',
+                        data: [25, 20, 30, 35, 60],
+                        backgroundColor: '#1e293b',
+                        borderRadius: 8,
+                        barThickness: 28
+                    },
+                    {
+                        label: 'With Cognify (mins)',
+                        data: [2, 1, 1, 2, 3],
+                        backgroundColor: '#3b82f6',
+                        borderRadius: 8,
+                        barThickness: 28
+                    }
+                ]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: { display: false },
+                    legend: {
+                        display: true,
+                        labels: { color: '#94a3b8', font: { size: 11 } }
+                    },
                     title: {
                         display: true,
-                        text: 'Productivity Comparison',
+                        text: 'Time Saved Per Task (minutes)',
                         color: '#94a3b8',
-                        font: { size: 14, weight: 'bold' }
+                        font: { size: 13, weight: 'bold' }
                     }
                 },
                 scales: {
                     y: {
                         beginAtZero: true,
-                        max: 100,
                         grid: { color: '#ffffff08' },
-                        ticks: { color: '#64748b', callback: (value) => value + '%' }
+                        ticks: { color: '#64748b', callback: (v) => v + ' min' }
                     },
                     x: {
                         grid: { display: false },
-                        ticks: { color: '#94a3b8', font: { size: 11 } }
+                        ticks: { color: '#94a3b8', font: { size: 10 } }
                     }
                 }
             }

@@ -312,7 +312,8 @@ module.exports.generateVisualization = async (req, res) => {
             includeInsights
         },
         data: visualizationResult.visualizations,
-        inputContent: textInput ? textInput : JSON.stringify(visualizationResult.preview)
+        preview: visualizationResult.preview,
+        inputContent: textInput ? "Direct Text Input" : (req.file ? req.file.originalname : "Data File")
     });
 
     res.status(200).json({

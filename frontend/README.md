@@ -10,7 +10,7 @@
 
 ## 📖 Overview
 
-The Cognify frontend is a cutting-edge React application built with performance, aesthetics, and user experience as top priorities. Featuring a sophisticated Bento Box design system, premium animations, and intelligent data visualizations, it provides students with an immersive learning environment.
+The Cognify frontend is a cutting-edge React application built as part of an Academic PBL project (2026). It prioritizes performance, aesthetics, and user experience, featuring a sophisticated Bento Box design system, premium animations, and intelligent data visualizations to provide students with an immersive, high-fidelity learning environment.
 
 ---
 
@@ -441,7 +441,9 @@ When contributing to the frontend:
 
 ## 📄 License
 
-Educational project by Ankush Verma.
+Formal Final Year PBL Project (2026) by **Ankush Verma** (Lead Developer).
+Affiliation: **Manipal University Jaipur (MUJ)**.
+Project Guide: **Dr. Tapan Kumar Dey**.
 
 ---
 

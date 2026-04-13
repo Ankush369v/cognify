@@ -10,7 +10,7 @@
 
 ## 📖 Overview
 
-The Cognify backend is a comprehensive API server that orchestrates AI-powered content generation, advanced data analytics, and secure user management. Built with a modern MVC architecture, it seamlessly integrates multiple AI providers and Python-based data processing.
+The Cognify backend is a professional-grade API server developed as part of an Academic PBL project (2026). It orchestrates AI-powered content generation, advanced data analytics using a custom Python engine, and secure user management. Built with a robust MVC architecture, it seamlessly integrates multiple AI providers (Llama, Gemini, GPT) to deliver high-utility educational tools.
 
 ---
 
@@ -232,9 +232,9 @@ The backend uses **JWT (JSON Web Tokens)** for stateless authentication:
 - **Fail-Safe Inference**: Multi-provider fallback across OpenAI, Gemini, and Groq.
 
 ### Reliability-First File Processing
-- **Restricted Support**: Strictly focused on **PDF and TXT** for documents to ensure 100% text extraction accuracy.
+- **Diverse Support**: High-fidelity text extraction for **PDF and TXT**, plus smart parsing for **CSV and Excel** datasets.
 - **Cloudinary Integration**: Secure cloud storage for all source materials.
-- **Data Parsing**: Smart detection of CSV/Excel for the Python EDA engine.
+- **Advanced Parsing**: Smart delimiter and encoding detection for the Python EDA engine.
 
 ### MVC Architecture
 - **Separation of Concerns**: Routes → Controllers → Services → Models
@@ -385,7 +385,9 @@ Contributions are welcome! Please follow the coding standards:
 
 ## 📄 License
 
-Educational project by Ankush Verma.
+Formal Final Year PBL Project (2026) by **Ankush Verma** (Lead Developer).
+Affiliation: **Manipal University Jaipur (MUJ)**.
+Project Guide: **Dr. Tapan Kumar Dey**.
 
 ---
 

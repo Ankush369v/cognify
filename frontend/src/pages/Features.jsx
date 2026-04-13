@@ -20,6 +20,62 @@ import { Link, useNavigate } from 'react-router-dom';
 const FeatureSection = ({ feature, index, onFeatureClick }) => {
     const isEven = index % 2 === 0;
 
+    // Explicit color mapping to ensure Tailwind JIT picks up the classes
+    const colorSchemes = {
+        teal: {
+            bg: 'bg-teal-500',
+            bg10: 'bg-teal-500/10',
+            bg20: 'bg-teal-500/20',
+            border20: 'border-teal-500/20',
+            text400: 'text-teal-400',
+            text500: 'text-teal-500',
+            textHover: 'hover:text-teal-300',
+            from20: 'from-teal-500/20 shadow-teal-500/20'
+        },
+        pink: {
+            bg: 'bg-pink-500',
+            bg10: 'bg-pink-500/10',
+            bg20: 'bg-pink-500/20',
+            border20: 'border-pink-500/20',
+            text400: 'text-pink-400',
+            text500: 'text-pink-500',
+            textHover: 'hover:text-pink-300',
+            from20: 'from-pink-500/20 shadow-pink-500/20'
+        },
+        purple: {
+            bg: 'bg-purple-500',
+            bg10: 'bg-purple-500/10',
+            bg20: 'bg-purple-500/20',
+            border20: 'border-purple-500/20',
+            text400: 'text-purple-400',
+            text500: 'text-purple-500',
+            textHover: 'hover:text-purple-300',
+            from20: 'from-purple-500/20 shadow-purple-500/20'
+        },
+        blue: {
+            bg: 'bg-blue-500',
+            bg10: 'bg-blue-500/10',
+            bg20: 'bg-blue-500/20',
+            border20: 'border-blue-500/20',
+            text400: 'text-blue-400',
+            text500: 'text-blue-500',
+            textHover: 'hover:text-blue-300',
+            from20: 'from-blue-500/20 shadow-blue-500/20'
+        },
+        emerald: {
+            bg: 'bg-emerald-500',
+            bg10: 'bg-emerald-500/10',
+            bg20: 'bg-emerald-500/20',
+            border20: 'border-emerald-500/20',
+            text400: 'text-emerald-400',
+            text500: 'text-emerald-500',
+            textHover: 'hover:text-emerald-300',
+            from20: 'from-emerald-500/20 shadow-emerald-500/20'
+        }
+    };
+
+    const scheme = colorSchemes[feature.color] || colorSchemes.teal;
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -29,8 +85,8 @@ const FeatureSection = ({ feature, index, onFeatureClick }) => {
             className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 lg:gap-24 items-center py-12 lg:py-20 border-b border-white/5 last:border-0`}
         >
             <div className="flex-1 space-y-6">
-                <div className={`inline-flex p-3 rounded-2xl bg-${feature.color}-500/10 border border-${feature.color}-500/20 mb-2`}>
-                    <feature.icon className={`w-8 h-8 text-${feature.color}-400`} />
+                <div className={`inline-flex p-3 rounded-2xl ${scheme.bg10} border ${scheme.border20} mb-2`}>
+                    <feature.icon className={`w-8 h-8 ${scheme.text400}`} />
                 </div>
                 <h2 className="text-2xl md:text-4xl font-bold text-white tracking-tight">
                     {feature.title}
@@ -41,7 +97,7 @@ const FeatureSection = ({ feature, index, onFeatureClick }) => {
                 <ul className="space-y-4 pt-4">
                     {feature.benefits.map((benefit, i) => (
                         <li key={i} className="flex items-start gap-3 group">
-                            <div className={`mt-1 p-1 rounded-full bg-${feature.color}-500/10 text-${feature.color}-500 group-hover:scale-110 transition-transform`}>
+                            <div className={`mt-1 p-1 rounded-full ${scheme.bg10} ${scheme.text500} group-hover:scale-110 transition-transform`}>
                                 <CheckCircle2 className="w-4 h-4" />
                             </div>
                             <span className="text-slate-300 font-medium">{benefit}</span>
@@ -51,7 +107,7 @@ const FeatureSection = ({ feature, index, onFeatureClick }) => {
                 <div className="pt-6">
                     <button
                         onClick={() => onFeatureClick(feature.id)}
-                        className={`inline-flex items-center gap-2 font-bold text-${feature.color}-400 hover:text-${feature.color}-300 transition-all group`}
+                        className={`inline-flex items-center gap-2 font-bold ${scheme.text400} ${scheme.textHover} transition-all group`}
                     >
                         Try {feature.shortLabel} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </button>
@@ -60,11 +116,11 @@ const FeatureSection = ({ feature, index, onFeatureClick }) => {
 
             <div className="flex-1 w-full">
                 <div className="relative group">
-                    <div className={`absolute -inset-4 bg-gradient-to-tr from-${feature.color}-500/20 to-indigo-500/20 rounded-[2rem] blur-2xl opacity-50 group-hover:opacity-70 transition-opacity`} />
+                    <div className={`absolute -inset-4 bg-gradient-to-tr ${scheme.from20} to-indigo-500/20 rounded-[2rem] blur-2xl opacity-50 group-hover:opacity-70 transition-opacity`} />
                     <div className="relative glass-panel rounded-[2rem] border border-white/10 overflow-hidden aspect-video bg-slate-900/50 flex items-center justify-center p-8">
                         <div className="flex flex-col items-center text-center space-y-4">
-                            <div className={`w-20 h-20 rounded-3xl bg-${feature.color}-500/20 flex items-center justify-center animate-pulse`}>
-                                <feature.icon className={`w-10 h-10 text-${feature.color}-400`} />
+                            <div className={`w-20 h-20 rounded-3xl ${scheme.bg20} flex items-center justify-center animate-pulse`}>
+                                <feature.icon className={`w-10 h-10 ${scheme.text400}`} />
                             </div>
                             <div className="space-y-2">
                                 <div className="h-2 w-48 bg-white/5 rounded-full overflow-hidden">
@@ -72,7 +128,7 @@ const FeatureSection = ({ feature, index, onFeatureClick }) => {
                                         initial={{ width: 0 }}
                                         whileInView={{ width: '100%' }}
                                         transition={{ duration: 2, repeat: Infinity }}
-                                        className={`h-full bg-${feature.color}-500`}
+                                        className={`h-full ${scheme.bg}`}
                                     />
                                 </div>
                                 <div className="text-[10px] font-mono text-slate-500 uppercase tracking-widest leading-none">
@@ -108,20 +164,6 @@ const Features = () => {
 
     const features = [
         {
-            id: 'analysis',
-            shortLabel: 'Data Analyst',
-            title: 'Advanced AI Data Analysis',
-            color: 'indigo',
-            icon: BarChart2,
-            description: "Go beyond basic spreadsheets. Our AI Data Analyst performs complex statistical audits, correlation mapping, and trend decomposition automatically.",
-            benefits: [
-                "Executive-grade strategic recommendations based on raw math.",
-                "Customizable Report Depth: From quick summaries to deep technical audits.",
-                "Tone Control: Professional, Academic, or Storytelling styles.",
-                "Multivariate analysis to uncover hidden drivers in your datasets."
-            ]
-        },
-        {
             id: 'visualize',
             shortLabel: 'Visualizer',
             title: 'Interactive Data Visualizer',
@@ -131,7 +173,7 @@ const Features = () => {
             benefits: [
                 "Multiple Themes: Modern Dark, Corporate Light, Neon, and more.",
                 "AI Narrative Insights: Contextual explanations for every chart.",
-                "Wide Format Support: Area, Bar, Line, Pie, and complex multi-series charts.",
+                "Statistical Fidelity: Histograms, Categorical Pie Charts, and Correlation Scatters.",
                 "Responsive Layouts: Dashboards that adapt to any screen size."
             ]
         },
@@ -149,7 +191,6 @@ const Features = () => {
                 "Performance Tuning: Automatic refactoring for O(n) efficiency."
             ]
         },
-
         {
             id: 'generate',
             shortLabel: 'MCQ Generator',

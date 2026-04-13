@@ -88,7 +88,6 @@ const Home = () => {
         { id: 'summaries', label: 'Summarizer', icon: Zap, desc: "Condense complex documents into clear, concise summaries." },
 
         { id: 'code-tools', label: 'Code Tools', icon: Code2, desc: "Analyze, debug, and optimize your code snippets with AI." },
-        { id: 'analysis', label: 'Data Analyst', icon: BarChart2, desc: "Automated insights and trend detection for Excel/CSV data." },
         { id: 'visualize', label: 'Data Visualizer', icon: PieChart, desc: "Interactive PowerBI-style dashboards for deep visual data storytelling." },
     ];
 
@@ -235,15 +234,15 @@ const Home = () => {
                                 </div>
                             </div>
 
-                            {/* Node 6: Data Analysis */}
+                            {/* Node 6: Data Visualization */}
                             <div className="absolute top-5 left-1/2 -translate-x-1/2 animate-float z-10" style={{ animationDelay: '4s' }}>
                                 <div className="glass-panel p-4 rounded-2xl flex items-center gap-3 border border-white/10 bg-slate-800/80 backdrop-blur-md shadow-lg shadow-teal-500/10">
                                     <div className="p-2 rounded-lg bg-teal-500/20">
-                                        <BarChart2 className="w-5 h-5 text-teal-400" />
+                                        <PieChart className="w-5 h-5 text-teal-400" />
                                     </div>
                                     <div className="flex flex-col">
-                                        <span className="text-xs font-bold text-slate-200">Data Insights</span>
-                                        <span className="text-[10px] text-teal-400 font-mono">Trends Found: 7</span>
+                                        <span className="text-xs font-bold text-slate-200">Visual Insights</span>
+                                        <span className="text-[10px] text-teal-400 font-mono">Status: Dashboard Live</span>
                                     </div>
                                 </div>
                             </div>

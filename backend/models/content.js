@@ -8,7 +8,7 @@ const generatedContentSchema = new mongoose.Schema({
   },
   type: {
     type: String,
-    enum: ["mcq", "summary", "review", "explain", "flashcards", "analysis", "visualize", "refactor", "optimize", "document"],
+    enum: ["mcq", "summary", "review", "explain", "flashcards", "analysis", "visualize"],
     required: true,
   },
   fileId: {
@@ -19,7 +19,8 @@ const generatedContentSchema = new mongoose.Schema({
   meta: mongoose.Schema.Types.Mixed,
 
   inputContent: mongoose.Schema.Types.Mixed, // Original input (text, code, etc.)
-  data: mongoose.Schema.Types.Mixed, // The actual generated content
+  preview: mongoose.Schema.Types.Mixed,      // Dataset snapshot/preview (e.g., first 5 rows)
+  data: mongoose.Schema.Types.Mixed,         // The actual generated content
 
   createdAt: {
     type: Date,
