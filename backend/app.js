@@ -14,7 +14,7 @@ app.use(cors({
   origin: [
     "http://localhost:5173",  // Local development
     "https://cognify-two-rouge.vercel.app",  // Production frontend
-    "https://cognifyf.vercel.app/login",
+    "https://cognifyf.vercel.app",
     "https://*.vercel.app"  // Vercel preview deployments
   ],
   credentials: true
